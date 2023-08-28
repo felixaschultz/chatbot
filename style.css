@@ -63,8 +63,12 @@ body{
 
 .send-icon path{
     fill: #fff;
+    transition: fill .5s ease-in-out;
 }
 
+.chatbot-submitMessage:hover .send-icon path{
+    fill: var(--ci-color);
+}
 /* Latest question container */
 .lq-header{
     padding: 1rem;
@@ -107,6 +111,7 @@ body{
     padding: 1.2rem;
     font-size: 1rem;
     border-radius: 5px;
+    transition: background-color .5s ease-in-out;
 }
 
 .cta.--position-r{
@@ -116,6 +121,10 @@ body{
 .cta.new-chat{
     padding: .5rem;
     width: 100%;
+}
+
+.cta:hover{
+    background-color: color-mix(in lch, var(--ci-color) 80%, var(--baseColor));
 }
 
 /* general styles */
