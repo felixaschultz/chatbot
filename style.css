@@ -8,6 +8,7 @@ body{
     background-color: rgba(41,41,41, 1);
     color: #fff;
     font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
 }
 
 .chatbot-inputfield{
@@ -15,8 +16,12 @@ body{
     resize: none;
     padding: 15px;
     background-color: rgb(42, 42, 42);
+    width: 100%;
+    color: #fff;
+    font-size: .9rem;
 }
 
 .container{
-
+    display: grid;
+    grid-template-columns: .4fr 1fr;
 }
