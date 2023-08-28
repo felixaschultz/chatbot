@@ -7,9 +7,16 @@ body{
     padding: 0;
     background-color: rgba(41,41,41, 1);
     color: #fff;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .chatbot-inputfield{
-    border: none;
+    border: 1px solid rgb(86, 86, 86);
+    resize: none;
+    padding: 15px;
     background-color: rgb(42, 42, 42);
+}
+
+.container{
+
 }
