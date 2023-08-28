@@ -41,6 +41,23 @@ body{
     border: none;
 }
 
+.chatbot-submitMessage{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: .5rem 1.2rem;
+    border: none;
+    font-size: 1rem;
+    height: 100%;
+    text-indent: -150px;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.send-icon path{
+    fill: #fff;
+}
+
 /* Latest question container */
 .lq-header{
     padding: 1rem;
