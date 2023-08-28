@@ -79,13 +79,22 @@ body{
 .lq-question{
     width: 100%;
     max-width: 25rem;
-    height: 75px;
     padding: .75rem 1rem;
-    border: 1px solid var(--baseColor);
     overflow: hidden;
+    position: relative;
     white-space: nowrap; 
     text-overflow: ellipsis;
     margin-block: .5rem;
+}
+
+.lq-question::before{
+    content: "";
+    background-image: url("./assets/comment.png");
+    background-size: 15px 15px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    filter: invert(1);
 }
 
 /* CTA styling */
