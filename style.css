@@ -3,14 +3,14 @@
 }
 
 :root{
-    --baseColor: "";
+    --baseColor: rgba(41,41,41, 1);
     --ci-color: rgb(152, 0, 94);
 }
 
 body{
     margin: 0;
     padding: 0;
-    background-color: rgba(41,41,41, 1);
+    background-color: var(--baseColor);
     color: #fff;
     font-family: 'Courier New', Courier, monospace;
     font-size: 16px;
@@ -28,10 +28,19 @@ body{
     font-size: .9rem;
 }
 
+/* Latest question container */
+.lq-header{
+    padding: 1rem;
+}
+
 /* general styles */
 
 .cta{
     background-color: var(--ci-color);
+    border: none;
+    color: #fff;
+    padding: 1.2rem;
+    font-size: 1rem;
 }
 
 .container{
