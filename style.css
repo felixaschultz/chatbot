@@ -43,6 +43,10 @@ body{
     font-size: 1rem;
 }
 
+.cta.--position-r{
+    float: right;
+}
+
 .container{
     display: grid;
     grid-template-columns: .4fr 1fr;
