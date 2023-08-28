@@ -21,16 +21,24 @@ body{
 
 .chat-container{
     padding: 1.2rem;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.chatbot-container{
+    position: relative;
+    display: block;
+    border: 1px solid var(--borderColor);
 }
 
 .chatbot-inputfield{
-    border: 1px solid var(--borderColor);
     resize: none;
     padding: 15px;
     background-color: rgb(42, 42, 42);
     width: 100%;
     color: #fff;
     font-size: .9rem;
+    border: none;
 }
 
 /* Latest question container */
@@ -40,7 +48,8 @@ body{
 
 .latest-questions{
     padding: 1.2rem;
-    border-right: 1px solid var(--borderColor);
+    background-color: var(--borderColor);
+    height: 100vh;
 }
 
 .lq-question{
@@ -48,10 +57,11 @@ body{
     max-width: 25rem;
     height: 75px;
     padding: .75rem 1rem;
-    border: 1px solid var(--borderColor);
+    border: 1px solid var(--baseColor);
     overflow: hidden;
     white-space: nowrap; 
     text-overflow: ellipsis;
+    margin-block: .5rem;
 }
 
 /* general styles */
