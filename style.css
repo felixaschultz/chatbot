@@ -5,6 +5,7 @@
 :root{
     --baseColor: rgba(41,41,41, 1);
     --ci-color: rgb(152, 0, 94);
+    --borderColor: rgb(86, 86, 86);
 }
 
 body{
@@ -19,7 +20,7 @@ body{
 /* Chatbot */
 
 .chatbot-inputfield{
-    border: 1px solid rgb(86, 86, 86);
+    border: 1px solid var(--borderColor);
     resize: none;
     padding: 15px;
     background-color: rgb(42, 42, 42);
@@ -31,6 +32,21 @@ body{
 /* Latest question container */
 .lq-header{
     padding: 1rem;
+}
+
+.latest-questions{
+    padding: 1.2rem;
+}
+
+.lq-question{
+    width: 100%;
+    max-width: 25rem;
+    height: 75px;
+    padding: .75rem 1rem;
+    border: 1px solid var(--borderColor);
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
 }
 
 /* general styles */
