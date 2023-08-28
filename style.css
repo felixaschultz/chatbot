@@ -88,19 +88,26 @@ body{
     margin-block: .5rem;
 }
 
-/* general styles */
-
+/* CTA styling */
 .cta{
     background-color: var(--ci-color);
     border: none;
     color: #fff;
     padding: 1.2rem;
     font-size: 1rem;
+    border-radius: 5px;
 }
 
 .cta.--position-r{
     float: right;
 }
+
+.cta.new-chat{
+    padding: .5rem;
+    width: 100%;
+}
+
+/* general styles */
 
 .container{
     display: grid;
