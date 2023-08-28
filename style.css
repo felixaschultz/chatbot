@@ -19,6 +19,10 @@ body{
 
 /* Chatbot */
 
+.chat-container{
+    padding: 1.2rem;
+}
+
 .chatbot-inputfield{
     border: 1px solid var(--borderColor);
     resize: none;

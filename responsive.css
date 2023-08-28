@@ -1,4 +1,14 @@
 /* Mobile styling */
 @media screen and (min-width: 350px) and (max-width: 900px) {
-    
+    .container{
+        display: block;
+    }
+
+    .latest-questions{
+        width: 100%;
+    }
+
+    .chat-container{
+        padding: 1.2rem;
+    }
 }
