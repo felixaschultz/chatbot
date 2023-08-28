@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+:root{
+    --baseColor: "";
+    --ci-color: rgb(152, 0, 94);
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -11,6 +16,8 @@ body{
     font-size: 16px;
 }
 
+/* Chatbot */
+
 .chatbot-inputfield{
     border: 1px solid rgb(86, 86, 86);
     resize: none;
@@ -19,6 +26,12 @@ body{
     width: 100%;
     color: #fff;
     font-size: .9rem;
+}
+
+/* general styles */
+
+.cta{
+    background-color: var(--ci-color);
 }
 
 .container{
