@@ -73,6 +73,7 @@ body{
     padding: 1.2rem;
     background-color: var(--borderColor);
     height: 100vh;
+    max-width: 350px;
 }
 
 .lq-question{
