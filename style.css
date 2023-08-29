@@ -17,6 +17,21 @@ body{
     font-size: 16px;
 }
 
+/* Open menu or recent chats panel icon */
+.menu{
+    display: none;
+    background: transparent;
+    border: none;
+}
+
+.menu-line{
+    width: 3rem;
+    height: .4rem;
+    margin: .5rem 0;
+    display: block;
+    background-color: var(--borderColor);
+}
+
 /* Chatbot */
 
 .chat-container{
