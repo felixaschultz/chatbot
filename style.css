@@ -64,6 +64,14 @@ body{
     border: none;
 }
 
+.chatbot-inputfield:focus, .chatbot-inputfield:focus-within{
+    outline: none;
+}
+
+.chatbot-container:focus, .chatbot-container:focus-within{
+    border-color: color-mix(in srgb, var(--ci-color) 50%, #fff);
+}
+
 .chatbot-submitMessage{
     position: absolute;
     top: 0;
