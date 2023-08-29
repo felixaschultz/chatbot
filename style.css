@@ -5,6 +5,7 @@
 :root{
     --baseColor: rgba(41,41,41, 1);
     --ci-color: rgb(152, 0, 94);
+    /* --ci-color: rgb(111, 207, 0); */
     --borderColor: rgb(86, 86, 86);
 }
 
