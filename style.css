@@ -37,7 +37,23 @@ body{
 .chat-header{
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid var(--borderColor);
+}
+
+.chat-header-title{
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.chat-header-title::after{
+    content: "";
+    width: 100%;
+    height: 2px;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: color-mix(in srgb-linear, var(--ci-color) 70%, #aaaaaa);
 }
 
 .chat-container{
