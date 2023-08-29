@@ -33,6 +33,11 @@ body{
 }
 
 /* Chatbot */
+.chat-header{
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid var(--borderColor);
+}
 
 .chat-container{
     padding: 1.2rem;
