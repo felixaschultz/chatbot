@@ -108,7 +108,7 @@ body{
     padding: 1.2rem;
     background-color: var(--borderColor);
     height: 100vh;
-    max-width: 350px;
+    max-width: 300px;
 }
 
 .lq-question{
@@ -185,6 +185,7 @@ body{
     display: flex;
     flex-direction: column;
     padding-bottom: 2rem;
+    position: relative;
 }
 
 .chat-message-container.--user{
@@ -196,12 +197,32 @@ body{
 }
 
 .--bot > .chat-message{
-    background-color: color-mix(in lch, var(--ci-color) 30%, #929292);
+    background-color: color-mix(in lch, var(--ci-color) 15%, #959595);
+}
+
+.chat-message::after{
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    margin-top: 10px;
+    transform: rotate(-40deg);
 }
 
 .--user > .chat-message{
     background-color: color-mix(in lch, var(--ci-color) 90%, #929292);
     align-items: flex-end;
+}
+
+.--bot > .chat-message::after{
+    left: 5px;
+    background: color-mix(in lch, var(--ci-color) 15%, #959595);
+}
+
+.--user > .chat-message::after{
+    right: 5px;
+    background-color: color-mix(in lch, var(--ci-color) 90%, #929292);
 }
 
 /* suggestions container */
@@ -224,4 +245,56 @@ body{
 .question:hover{
     background-color: var(--ci-color);
     border-color: var(--ci-color);
+}
+
+/* Loading icon */
+.loading{
+    position: relative;
+    display: flex;
+}
+
+.loading-item{
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: .75;
+    display: block;
+    margin: 0 .2rem;
+    transition: all .5s ease-in-out;
+}
+
+.loading-item:nth-child(1){
+    animation: loading .5s linear infinite;
+}
+.loading-item:nth-child(2){
+    animation: loading .5s linear infinite;
+    animation-delay: 1s;
+}
+.loading-item:nth-child(3){
+    transform: translateX(1.5);
+    animation: loading .5s linear infinite;
+    animation-delay: 1.5s;
+}
+
+@keyframes loading {
+    0%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-5px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(5px);
+    }
+
+    0%{
+        transform: translateY(0px);
+    }
 }
