@@ -166,3 +166,20 @@ body{
     background-color: color-mix(in lch, var(--ci-color) 90%, #929292);
     align-items: flex-end;
 }
+
+/* suggestions container */
+.suggestions{
+    padding: .8rem 0;
+}
+
+.question{
+    border: 1px solid var(--borderColor);
+    border-radius: .4rem;
+    width: max-content;
+    display: inline-block;
+    padding: .6rem;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: .95rem;
+    color: #fff;
+}
