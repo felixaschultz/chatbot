@@ -25,8 +25,8 @@ body{
 }
 
 .menu-line{
-    width: 3rem;
-    height: .4rem;
+    width: 2.5rem;
+    height: .25rem;
     margin: .5rem 0;
     display: block;
     background-color: var(--borderColor);
@@ -43,6 +43,7 @@ body{
     padding: 1.2rem;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    height: 100vh;
 }
 
 .chatbot-container{
@@ -157,6 +158,8 @@ body{
 /* Chat message style */
 .message-container{
     display: flex;
+    overflow: hidden;
+    overflow-y: scroll;
     flex-direction: column;
 }
 
