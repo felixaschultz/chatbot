@@ -5,7 +5,7 @@
 :root{
     --baseColor: rgba(41,41,41, 1);
     --ci-color: rgb(152, 0, 94);
-    /* --ci-color: rgb(111, 207, 0); */
+    --ci-color: rgb(192, 159, 83);
     --borderColor: rgb(86, 86, 86);
 }
 
@@ -213,7 +213,7 @@ body{
 }
 
 .--bot > .chat-message{
-    background-color: color-mix(in lch, var(--ci-color) 15%, #959595);
+    background-color: color-mix(in lch, var(--ci-color) 15%, #454545);
 }
 
 .chat-message::after{
@@ -227,18 +227,18 @@ body{
 }
 
 .--user > .chat-message{
-    background-color: color-mix(in lch, var(--ci-color) 90%, #929292);
+    background-color: var(--ci-color);
     align-items: flex-end;
 }
 
 .--bot > .chat-message::after{
     left: 5px;
-    background: color-mix(in lch, var(--ci-color) 15%, #959595);
+    background: color-mix(in lch, var(--ci-color) 15%, #454545);
 }
 
 .--user > .chat-message::after{
     right: 5px;
-    background-color: color-mix(in lch, var(--ci-color) 90%, #929292);
+    background-color: var(--ci-color);
 }
 
 /* suggestions container */
