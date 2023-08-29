@@ -133,3 +133,36 @@ body{
     display: grid;
     grid-template-columns: auto 1fr;
 }
+
+/* Chat message style */
+.message-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-message{
+    padding: 1rem;
+    border-radius: .5rem;
+    max-width: 550px;
+    width: max-content;
+    height: auto;
+    margin-block: .76rem;
+}
+
+.chat-message-container{
+    display: flex;
+    padding-bottom: 2rem;
+}
+
+.chat-message-container.--user{
+    justify-content: flex-end;
+}
+
+.--bot > .chat-message{
+    background-color: color-mix(in lch, var(--ci-color) 30%, #929292);
+}
+
+.--user > .chat-message{
+    background-color: color-mix(in lch, var(--ci-color) 90%, #929292);
+    align-items: flex-end;
+}
