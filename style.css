@@ -266,35 +266,41 @@ body{
 
 .loading-item:nth-child(1){
     animation: loading .5s linear infinite;
+    animation-direction: alternate;
 }
 .loading-item:nth-child(2){
     animation: loading .5s linear infinite;
-    animation-delay: 1s;
+    animation-direction: alternate;
 }
 .loading-item:nth-child(3){
     transform: translateX(1.5);
     animation: loading .5s linear infinite;
-    animation-delay: 1.5s;
+    animation-direction: alternate;
 }
 
 @keyframes loading {
     0%{
+        transform: -webkit-translateY(0px);
         transform: translateY(0px);
     }
 
     50%{
-        transform: translateY(-5px);
+        transform: -webkit-translateY(-2px);
+        transform: translateY(-2px);
     }
 
     100%{
+        transform: -webkit-translateY(0px);
         transform: translateY(0px);
     }
 
     50%{
-        transform: translateY(5px);
+        transform: -webkit-translateY(-2px);
+        transform: translateY(-2px);
     }
 
     0%{
+        transform: -webkit-translateY(0px);
         transform: translateY(0px);
     }
 }
