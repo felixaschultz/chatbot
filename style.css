@@ -182,11 +182,16 @@ body{
 
 .chat-message-container{
     display: flex;
+    flex-direction: column;
     padding-bottom: 2rem;
 }
 
 .chat-message-container.--user{
-    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.chat-user{
+    margin: 0;
 }
 
 .--bot > .chat-message{
