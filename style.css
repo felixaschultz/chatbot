@@ -203,3 +203,8 @@ body{
     font-size: .95rem;
     color: #fff;
 }
+
+.question:hover{
+    background-color: var(--ci-color);
+    border-color: var(--ci-color);
+}
