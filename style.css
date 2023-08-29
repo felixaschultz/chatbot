@@ -97,7 +97,7 @@ body{
     border: none;
     font-size: 1rem;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     background-color: transparent;
     cursor: pointer;
 }
@@ -110,6 +110,25 @@ body{
 .send-icon path{
     fill: #fff;
     transition: fill .5s ease-in-out;
+}
+
+.chatbot-submitMessage::after{
+    content: "Send message";
+    width: max-content;
+    background-color: var(--borderColor);
+    display: block;
+    padding: .2rem 1rem;
+    position: absolute;
+    right: 2.8rem;
+    top: 1.75rem;
+    border-radius: .5rem;
+    transition: opacity .5s ease-in-out;
+    opacity: 0;
+    color: #fff;
+}
+
+.chatbot-submitMessage:hover::after{
+    opacity: 1;
 }
 
 .chatbot-submitMessage:hover .send-icon path{
