@@ -39,6 +39,10 @@ body{
     justify-content: center;
 }
 
+.mobile-headline{
+    display: none;
+}
+
 .chat-header-title{
     position: relative;
     margin-top: 0;

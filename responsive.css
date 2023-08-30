@@ -23,6 +23,12 @@
         justify-content: flex-start;
     }
 
+    .mobile-headline{
+        display: block;
+        text-align: center;
+        margin-left: 1.5rem;
+    }
+
     .chat-header-title{
         font-size: 1.2rem;
         margin-left: 1em;
