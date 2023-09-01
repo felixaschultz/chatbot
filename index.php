@@ -36,21 +36,15 @@
     <aside class="latest-questions">
         <header class="lq-header">
             <h1 class="chat-header-title"><?php echo $botname;?></h1>
-            <button class="cta new-chat">New Chat</button>
+            <a href="index.php" class="cta new-chat">New Chat</a>
         </header>
         <h2>Your recent chats</h2>
         <section class="lq-group">
             <p>August</p>
             <?php
-                if(isset($_SESSION["answer"])){
-                    foreach($_SESSION["answer"] as $chats){
-                        echo "<a href='?chat=".$chats["chat_id"]."'>";
-                        if(is_array($chats)){
-                            foreach($chats as $chat){
-                                echo "". $chat ."</a>";
-                            }
-                        }
-                        echo "</a>";
+                if(isset($_SESSION["chats"])){
+                    foreach($_SESSION["chats"] as $chatid){
+                        echo "<a href='?chat=".$chatid["id"]."'>".$chatid["question"]."</a> <br>";
                     }
                 }
             ?>
@@ -70,7 +64,7 @@
             <?php
                 if(isset($_GET["chat"])){
                     /* if($_SESSION["answer"]["id"] === $_GET["chat"]){ */
-                        if(is_array($_SESSION["answer"])){
+                        if(isset($_SESSION["answer"]) && is_array($_SESSION["answer"])){
                             foreach($_SESSION["answer"] as $question){
                                 if($question["chat_id"] == $_GET["chat"]){
                                     echo '<article class="chat-message-container --user">
