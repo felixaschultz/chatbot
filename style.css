@@ -160,6 +160,13 @@ body{
     text-overflow: ellipsis;
     margin-block: .5rem;
     cursor: pointer;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+.lq-question:hover, .lq-question:focus, .lq-question:focus-within{
+    background-color: var(--ci-color);
 }
 
 .lq-question::before{

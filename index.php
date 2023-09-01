@@ -44,7 +44,7 @@
             <?php
                 if(isset($_SESSION["chats"])){
                     foreach($_SESSION["chats"] as $chatid){
-                        echo "<a href='?chat=".$chatid["id"]."'>".$chatid["question"]."</a> <br>";
+                        echo "<a href='?chat=".$chatid["id"]."' class='lq-question'>".$chatid["question"]."</a>";
                     }
                 }
             ?>
