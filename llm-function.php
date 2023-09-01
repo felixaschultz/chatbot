@@ -4,29 +4,30 @@
         include("./black-list.php");
         //function to run an AI to answer some question of users
         $answers = "For that I do not have the answer yet.";
+        $strpattern = '/\b(calculate|calculation)\b/i';
 
         if(str_contains(strtolower($q),"moin")
         || str_contains(strtolower($q),"mojn")
         ){
             $answers = "Moin";
-        }
-
-        if($q == "What is the meaning of life?"){
+        } else if($q == "What is the meaning of life?"){
             $answers = 42;
-        }
-
-        if($q == "What is your name?"){
-            $answers = $botname;
-        }
-
-        if($q == "How old are you?"){
+        } else if($q == "What is your name?"){
+            $answers = "Hi my name is ".$botname;
+        } else if($q == "How old are you?"){
             $answers = "I´m only a few days old. My programmers are working hard, to make me better.";
+        } else if(str_contains(strtolower($q), "your purpose")){
+            $answers = "My purpose is to serve you with some basic information. My developer has worked som simply statements in
+            for you to test. I will do my best to learn more infos for you.";
         }
 
-        foreach($blacklistWords as $needle) {
-            $found[$needle] = strpos(strtolower($q), $needle, 0);
-            if($found){
-                $answers = "For that I can´t provide you with an answer";
+        if(preg_match($strpattern, $q)){
+            $pattern = '/(\d+\s*[\+\-\*\/]\s*\d+)/';
+            
+            if(preg_match($pattern, $q, $matches)){
+                $calculation = $matches[0];
+                eval("\$result = $calculation;");
+                $answers = "The anwser is ". $result;
             }
         }
 
