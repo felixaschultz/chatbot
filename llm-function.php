@@ -28,14 +28,14 @@
             if(preg_match($pattern, $q, $matches) || preg_match($mathpattern, $q, $matches)){
                 $calculation = $matches[0];
                 eval("\$result = $calculation;");
-                $answers = "The anwser is ". $result;
+                $answers = "I have calulated ". $calculation ." and the anwser is ". $result;
             }
         }
 
         if(preg_match($mathpattern, $q, $matches)){
             $calculation = $matches[0];
             eval("\$result = $calculation;");
-            $answers = "The anwser is ". $result;
+            $answers = "I have calulated ". $calculation ." and the anwser is ". $result;
         }
 
         return $answers;
