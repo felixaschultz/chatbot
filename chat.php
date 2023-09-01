@@ -35,6 +35,22 @@
         $answer .= "I don´t know the word profession? Please ask me something else.";
     }
 
+    if(!isset($_SESSION["chats"])){
+        $_SESSION["chats"] = array(
+            [
+                "id" => $id,
+                "question" => $question,
+            ]
+        );
+    }else{
+        if(!in_array_recursive($id, $_SESSION["chats"], true)){
+            array_push($_SESSION["chats"], [
+                "id" => $id,
+                "question" => $question,
+            ]);
+        }
+    }
+
     if(!isset($_SESSION["answer"])){
         $_SESSION["answer"] = array(
             [
@@ -43,22 +59,33 @@
                 "chat_id" => $id
             ]
         );
-        $_SESSION["chats"] = array(
-            [
-                "id" => $id,
-                "question" => $question,
-            ]
-        );
     }else{
         array_push($_SESSION["answer"], [
             "question" => $question,
             "answer" => $answer,
             "chat_id" => $id
         ]);
-        array_push($_SESSION["chats"], [
-            "id" => $id,
-            "question" => $question,
-        ]);
+    }
+
+    /* Fra PHP.net */
+    function in_array_recursive(mixed $needle, array $haystack, bool $strict): bool
+    {
+        foreach ($haystack as $element) {
+            if ($element === $needle) {
+                return true;
+            }
+
+            $isFound = false;
+            if (is_array($element)) {
+                $isFound = in_array_recursive($needle, $element, $strict);
+            }
+            
+            if ($isFound === true) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     echo json_encode($answer);
