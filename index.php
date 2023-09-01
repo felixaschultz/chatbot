@@ -110,5 +110,46 @@
             </form>
         </footer>
     </main>
+    <script>
+        const questionBtn = document.querySelectorAll(".question");
+        const messageContainer = document.querySelector(".message-container");
+        questionBtn.forEach(btn => {
+            btn.addEventListener("click", function(e){
+                e.preventDefault();
+                const question = e.target.getAttribute("data-question");
+                messageContainer.innerHTML += `
+                <article class="chat-message-container --user">
+                    <section class="chat-message">
+                        ${e.target.getAttribute("data-question")}
+                    </section>
+                    <p class="chat-user">You</p>
+                </article>
+                `;
+                fetchData(question);
+
+            })
+        })
+
+        function fetchData(e){
+            return fetch("chat.php", {
+                method: "POST",
+                body: e
+            }).then(e => e.json()).then(e => {
+                const answer = e;
+                if(answer !== ""){
+                    messageContainer.innerHTML += `
+                        <article class="chat-message-container --bot">
+                            <section class="chat-message">
+                                ${answer}
+                            </section>
+                            <p class="chat-user">Chatbot</p>
+                        </article>
+                    `;
+
+                    document.querySelector(".chat-message-container").scrollIntoView()
+                }
+            })
+        }
+    </script>
 </body>
 </html>
