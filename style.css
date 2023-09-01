@@ -292,10 +292,10 @@ body{
 }
 
 .suggestions-container{
-    width: 100%;
+    /* width: 100%; */
     overflow-x: scroll;
     display: flex;
-    flex: 10 0 auto
+    /* flex: 10 0 auto */
 }
 
 .question{
