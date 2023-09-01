@@ -78,19 +78,9 @@
                 </section>
                 <p class="chat-user">You</p>
             </article>
-            <article class="chat-message-container --bot">
-                <section class="chat-message">
-                    <div class="loading">
-                        <span class="loading-item"></span>
-                        <span class="loading-item"></span>
-                        <span class="loading-item"></span>
-                    </div>
-                </section>
-                <p class="chat-user">Chatbot</p>
-            </article>
         </section>
         <footer class="chat-footer">
-            <form action="" method="post">
+            <form method="post" id="chatbot">
                 <section class="suggestions">
                     Suggestions:
                     <button data-question="What is your name?" class="question">
@@ -113,6 +103,7 @@
     <script>
         const questionBtn = document.querySelectorAll(".question");
         const messageContainer = document.querySelector(".message-container");
+        const form = document.querySelector("#chatbot");
         questionBtn.forEach(btn => {
             btn.addEventListener("click", function(e){
                 e.preventDefault();
@@ -130,23 +121,45 @@
             })
         })
 
+        form.addEventListener("submit", function(e){
+            e.preventDefault();
+            const question = document.querySelector(".chatbot-inputfield").value;
+            fetchData(question);
+        })
+
         function fetchData(e){
             return fetch("chat.php", {
                 method: "POST",
                 body: e
-            }).then(e => e.json()).then(e => {
+            }).then((e) => {
+                messageContainer.innerHTML += `
+                <article class="chat-message-container --bot --loading">
+                    <section class="chat-message">
+                        <div class="loading">
+                            <span class="loading-item"></span>
+                            <span class="loading-item"></span>
+                            <span class="loading-item"></span>
+                        </div>
+                    </section>
+                    <p class="chat-user">Chatbot</p>
+                </article>
+                `;
+                return e.json() 
+            }).then(e => {
                 const answer = e;
                 if(answer !== ""){
                     messageContainer.innerHTML += `
-                        <article class="chat-message-container --bot">
-                            <section class="chat-message">
-                                ${answer}
-                            </section>
-                            <p class="chat-user">Chatbot</p>
-                        </article>
+                    <article class="chat-message-container --bot">
+                        <section class="chat-message">
+                            ${answer}
+                        </section>
+                        <p class="chat-user">Chatbot</p>
+                    </article>
                     `;
 
-                    document.querySelector(".chat-message-container").scrollIntoView()
+                    messageContainer.removeChild(document.querySelector(".--loading"))
+
+                    document.querySelector(".--bot").scrollIntoView()
                 }
             })
         }

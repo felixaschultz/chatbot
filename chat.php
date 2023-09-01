@@ -10,6 +10,10 @@
         $answer = 42;
     }
 
+    if($inputData == "What is your name?"){
+        $answer = "I can´t answer it at the moment";
+    }
+
 
     echo json_encode($answer);
 ?>
