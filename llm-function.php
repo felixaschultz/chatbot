@@ -1,55 +1,34 @@
 <?php
     function llm($q){
         include("./general-infos.php");
+        include("./black-list.php");
         //function to run an AI to answer some question of users
-        
+        $answers = "For that I do not have the answer yet.";
 
         if(str_contains(strtolower($q),"moin")
         || str_contains(strtolower($q),"mojn")
         ){
             $answers = "Moin";
-        }else{
-            $answers = "For that I do not have the answer yet.";
         }
 
         if($q == "What is the meaning of life?"){
-            $answers .= 42;
-        }else{
-            $answers = "For that I do not have the answer yet.";
+            $answers = 42;
         }
 
         if($q == "What is your name?"){
-            $answers .= $botname;
-        }else{
-            $answers = "For that I do not have the answer yet.";
+            $answers = $botname;
         }
 
-        if(){
-            
-        }
-
-        /*
-    
-        if(str_contains(strtolower($q),"moin") ||
-        str_contains(strtolower($q),"mojn")){
-            $answer .= "Moin, do";
-        }
-    
-        if($q == "What is your name?"){
-            $answer .= "Chatbot";
-        }
-    
-        if(str_contains(strtolower($q), "fsdk")){
-            $answer .= "My answer doesn´t convern!";
-        }
-    
         if($q == "How old are you?"){
-            $answer .= "My age is not relevant for you to know!";
+            $answers = "I´m only a few days old. My programmers are working hard, to make me better.";
         }
-    
-        if(str_contains($q, "profession")){
-            $answer .= "I don´t know the word profession? Please ask me something else.";
-        } */
+
+        foreach($blacklistWords as $needle) {
+            $found[$needle] = strpos(strtolower($q), $needle, 0);
+            if($found){
+                $answers = "For that I can´t provide you with an answer";
+            }
+        }
 
         return $answers;
     }
