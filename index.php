@@ -1,12 +1,13 @@
-<!-- <?php
+<?php
+    session_start();
     $botname = "Chatbot 0.1 alpha";
-?>-->
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot</title>
+    <title><?php echo $botname;?></title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="apple-touch-icon" sizes="57x57" href="https://www.intastellarsolutions.com/assets/icons/fav/apple-icon-57x57.png">
@@ -26,7 +27,7 @@
 <body class="container">
     <aside class="latest-questions">
         <header class="lq-header">
-            <h1 class="chat-header-title">Chatbot 0.1 alpha</h1>
+            <h1 class="chat-header-title"><?php echo $botname;?></h1>
             <button class="cta new-chat">New Chat</button>
         </header>
         <h2>Your recent chats</h2>
@@ -56,7 +57,7 @@
                 <span class="menu-line"></span>
                 <span class="menu-line"></span>
             </button>
-            <h2 class="mobile-headline">Chatbot 0.1 alpha</h2>
+            <h2 class="mobile-headline"><?php echo $botname;?></h2>
         </header>
         <section class="message-container">
             <article class="chat-message-container --user">
