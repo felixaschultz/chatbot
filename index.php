@@ -1,6 +1,9 @@
 <?php
     session_start();
     $botname = "Chatbot 0.2 beta";
+    if(!isset($_GET["chat"])){
+        header("Location: ?chat=" . rand());
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,21 +41,20 @@
         <h2>Your recent chats</h2>
         <section class="lq-group">
             <p>August</p>
-            <article class="lq-question">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti culpa sunt dolorem, vero tempore rerum nulla magnam dolore fugit magni asperiores nam aliquam cupiditate, pariatur beatae ipsam? Maxime, facere in.
-            </article>
-            <article class="lq-question">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa id vel aut pariatur aspernatur. Odit vel expedita unde est, reiciendis qui, eum nostrum consequatur ipsum, sunt possimus deleniti delectus tempore.
-            </article>
-            <article class="lq-question">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum, laborum ducimus iusto sint voluptate veritatis ipsam itaque dolore unde deserunt, aperiam natus voluptates autem temporibus ea commodi at qui? Eligendi.
-            </article>
-        </section>
-        <section class="lq-group">
-            <p>July</p>
-            <article class="lq-question">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus consectetur impedit perspiciatis tempore quibusdam amet libero aliquam pariatur harum quae perferendis fuga explicabo, repellat reiciendis hic. Temporibus facere odit cumque.
-            </article>
+            <?php
+                if(isset($_SESSION["answer"])){
+                    foreach($_SESSION["answer"] as $chats){
+                        echo "<a href='?chat=".$chats["chat_id"]."'>";
+                        if(is_array($chats)){
+                            foreach($chats as $chat){
+                                echo "". $chat ."</a>";
+                            }
+                        }
+                        echo "</a>";
+                    }
+                }
+            ?>
+            
         </section>
     </aside>
     <main class="chat-container">
@@ -65,47 +67,38 @@
             <h2 class="mobile-headline"><?php echo $botname;?></h2>
         </header>
         <section class="message-container">
-            <article class="chat-message-container --user">
-                <section class="chat-message">
-                    What is the meaning of life?
-                </section>
-                <p class="chat-user">You</p>
-            </article>
-            <article class="chat-message-container --bot">
-                <section class="chat-message">
-                    42
-                </section>
-                <p class="chat-user">Chatbot</p>
-            </article>
-            <article class="chat-message-container --user">
-                <section class="chat-message">
-                    Lorem ipsum dolor
-                </section>
-                <p class="chat-user">You</p>
-            </article>
-            <?php 
-                if(isset($_SESSION["answer"])){
-                    if(is_array($_SESSION["answer"])){
-                        foreach($_SESSION["answer"] as $question){
-                            echo '<article class="chat-message-container --user">
-                                <section class="chat-message">
-                                    '. $question["question"] .'
-                                </section>
-                                <p class="chat-user">You</p>
-                            </article>';
-                            echo '<article class="chat-message-container --bot">
-                                <section class="chat-message">
-                                    '. $question["answer"] .'
-                                </section>
-                                <p class="chat-user">Chatbot</p>
-                            </article>';
-                        }   
-                    }
+            <?php
+                if(isset($_GET["chat"])){
+                    /* if($_SESSION["answer"]["id"] === $_GET["chat"]){ */
+                        if(is_array($_SESSION["answer"])){
+                            foreach($_SESSION["answer"] as $question){
+                                if($question["chat_id"] == $_GET["chat"]){
+                                    echo '<article class="chat-message-container --user">
+                                        <section class="chat-message">
+                                            '. $question["question"] .'
+                                        </section>
+                                        <p class="chat-user">You</p>
+                                    </article>';
+                                    echo '<article class="chat-message-container --bot">
+                                        <section class="chat-message">
+                                            '. $question["answer"] .'
+                                        </section>
+                                        <p class="chat-user">Chatbot</p>
+                                    </article>';
+                                }
+                                
+                            }
+                        }
+                    /* } */
+
+                    /* 2063911979 */
+                    /* 1121142122 */
                 }
             ?>
         </section>
         <footer class="chat-footer">
             <form method="post" id="chatbot">
+                <input type="hidden" name="id" id="id" value="<?php echo $_GET["chat"];?>">
                 <section class="suggestions">
                     Suggestions:
                     <button data-question="What is your name?" class="question">
@@ -119,7 +112,7 @@
                     </button>
                 </section>
                 <label for="" class="chatbot-container">
-                    <textarea class="chatbot-inputfield" placeholder="Type your message" name=""  cols="30" rows="3"></textarea>
+                    <textarea class="chatbot-inputfield" placeholder="Type your message" name="message"  cols="30" rows="3"></textarea>
                     <button type="submit" class="chatbot-submitMessage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="send-icon" stroke-width="2"><path d="M.5 1.163A1 1 0 0 1 1.97.28l12.868 6.837a1 1 0 0 1 0 1.766L1.969 15.72A1 1 0 0 1 .5 14.836V10.33a1 1 0 0 1 .816-.983L8.5 8 1.316 6.653A1 1 0 0 1 .5 5.67V1.163Z" fill="currentColor"></path></svg></button>
                 </label>
             </form>
@@ -129,6 +122,8 @@
         const questionBtn = document.querySelectorAll(".question");
         const messageContainer = document.querySelector(".message-container");
         const form = document.querySelector("#chatbot");
+        const message = document.querySelector(".chatbot-submitMessage");
+        const id = document.querySelector("#id").value;
         questionBtn.forEach(btn => {
             btn.addEventListener("click", function(e){
                 e.preventDefault();
@@ -141,8 +136,8 @@
                     <p class="chat-user">You</p>
                 </article>
                 `;
-                document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight;
-                fetchData(question);
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+                fetchData(question, id);
 
             })
         })
@@ -158,14 +153,18 @@
                     <p class="chat-user">You</p>
                 </article>
                 `;
-            document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight;
-            fetchData(question);
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+            fetchData(question, id);
+            message.value = "";
         })
 
-        function fetchData(e){
+        function fetchData(e, id){
             return fetch("chat.php", {
                 method: "POST",
-                body: e
+                body: JSON.stringify({
+                    message: e,
+                    id: id
+                })
             }).then((e) => {
                 messageContainer.innerHTML += `
                 <article class="chat-message-container --bot --loading">

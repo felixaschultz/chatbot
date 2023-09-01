@@ -6,45 +6,50 @@
     session_start();
 
     $questions = [];
-    
-    $question = file_get_contents("php://input");
-    $answer = "I don´t know what you´re talking about";
+    $answer = "";
+
+    $id = json_decode(file_get_contents("php://input"), true)["id"];
+    $question = json_decode(file_get_contents("php://input"), true)["message"];
     if($question == "What is the meaning of life?"){
-        $answer = 42;
+        $answer .= 42;
     }
 
-    if(strtolower($question) == "moin" ||
-        strtolower($question) == "mojn"){
-        $answer = "Moin, do";
+    if(str_contains(strtolower($question),"moin") ||
+    str_contains(strtolower($question),"mojn")){
+        $answer .= "Moin, do";
     }
 
     if($question == "What is your name?"){
-        $answer = "Chatbot";
+        $answer .= "Chatbot";
+    }
+
+    if(str_contains(strtolower($question), "fsdk")){
+        $answer .= "My answer doesn´t convern!";
     }
 
     if($question == "How old are you?"){
-        $answer = "My age is not relevant for you to know!";
+        $answer .= "My age is not relevant for you to know!";
     }
 
     if(str_contains($question, "profession")){
-        $answer = "I don´t know the word profession? Please ask me something else.";
+        $answer .= "I don´t know the word profession? Please ask me something else.";
     }
 
     if(!isset($_SESSION["answer"])){
         $_SESSION["answer"] = array(
             [
                 "question" => $question,
-                "answer" => $answer
+                "answer" => $answer,
+                "chat_id" => $id
             ]
         );
     }else{
         array_push($_SESSION["answer"], [
             "question" => $question,
-            "answer" => $answer
+            "answer" => $answer,
+            "chat_id" => $id
         ]);
     }
 
-    echo json_encode(
-        $answer
-    );
+    echo json_encode($answer);
 ?>
