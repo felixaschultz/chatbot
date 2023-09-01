@@ -14,7 +14,15 @@
     }
 
     if($question == "What is your name?"){
-        $answer = "I can´t answer it at the moment";
+        $answer = "Chatbot";
+    }
+
+    if($question == "How old are you?"){
+        $answer = "My age is not relevant for you to know!";
+    }
+
+    if(str_contains($question, "profession")){
+        $answer = "I don´t know the word profession? Please ask me something else.";
     }
 
     if(!isset($_SESSION["answer"])){

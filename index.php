@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $botname = "Chatbot 0.1 alpha";
+    $botname = "Chatbot 0.2 beta";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,6 +141,7 @@
                     <p class="chat-user">You</p>
                 </article>
                 `;
+                document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight;
                 fetchData(question);
 
             })
@@ -157,6 +158,7 @@
                     <p class="chat-user">You</p>
                 </article>
                 `;
+            document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight;
             fetchData(question);
         })
 
@@ -191,7 +193,6 @@
                     `;
 
                     messageContainer.removeChild(document.querySelector(".--loading"))
-
                     document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight;
                 }
             })
