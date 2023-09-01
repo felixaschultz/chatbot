@@ -118,6 +118,8 @@
         const form = document.querySelector("#chatbot");
         const message = document.querySelector(".chatbot-submitMessage");
         const id = document.querySelector("#id").value;
+        const menuBtn = document.querySelector(".menu");
+        const menu = document.querySelector(".latest-questions");
         questionBtn.forEach(btn => {
             btn.addEventListener("click", function(e){
                 e.preventDefault();
@@ -134,6 +136,10 @@
                 fetchData(question, id);
 
             })
+        })
+
+        menuBtn.addEventListener("click", function(){
+            menu.classList.toggle("--open");
         })
 
         form.addEventListener("submit", function(e){
