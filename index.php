@@ -23,6 +23,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://www.intastellarsolutions.com/assets/icons/fav/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="https://www.intastellarsolutions.com/assets/icons/fav/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://www.intastellarsolutions.com/assets/icons/fav/favicon-16x16.png">
+    <script>
+        window.addEventListener("DOMContentLoaded", function (){
+            document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight;
+        })
+    </script>
 </head>
 <body class="container">
     <aside class="latest-questions">
@@ -187,7 +192,7 @@
 
                     messageContainer.removeChild(document.querySelector(".--loading"))
 
-                    document.querySelector(".--bot").scrollIntoView()
+                    document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight;
                 }
             })
         }
