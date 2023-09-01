@@ -111,8 +111,8 @@
                         <button data-question="What is 5+2?" class="question">
                             What is 5+2?
                         </button>
-                        <button data-question="What is 4*56+3?" class="question">
-                            What is 4*56+3?
+                        <button data-question="What is 4x56+3?" class="question">
+                            What is 4x56+3?
                         </button>
                     </section>
                 </section>

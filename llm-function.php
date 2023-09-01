@@ -25,19 +25,19 @@
         if(preg_match($strpattern, $q)){
             $pattern = '/(\d+\s*[\+\-\*\/]\s*\d+)/';
             
-            if(preg_match($pattern, $q, $matches) || preg_match($mathpattern, $q, $matches)){
+            if(preg_match($pattern, $q, $matches) || preg_match($mathpattern, str_replace("x", "*", $q), $matches)){
                 $calculation = $matches[0];
                 eval("\$result = $calculation;");
                 $answers = "I have calulated ". $calculation ." and the anwser is ". $result;
             }
         }
-        if (preg_match_all('/(calculate|what is the sqrt\()(\d+(\.\d+)?)(\)|\?)?/i', $q, $sqaure)) {
+        if (preg_match_all('/(calculate|what is the sqrt\()(\d+(\.\d+)?)(\)|\?)?/i', str_replace("x", "*", $q), $sqaure)) {
             foreach ($sqaure[2] as $match) {
                 $number = floatval($match);
                 $result = sqrt($number);
                 $answers = "Square root of $number is: $result\n";
             }
-        } else if(preg_match_all('/(calculate|calculate the|what\'s the|what is the) square root of (\d+(\.\d+)?)/i', $q, $sqaure)){
+        } else if(preg_match_all('/(calculate|calculate the|what\'s the|what is the) square root of (\d+(\.\d+)?)/i', str_replace("x", "*", $q), $sqaure)){
             for ($i = 0; $i < count($sqaure[0]); $i++) {
                 $questionType = $sqaure[1][$i];
                 $number = floatval($sqaure[2][$i]);
@@ -49,12 +49,12 @@
             $answers = "No square root formula/question found in the input string.\n";
         }
 
-        if(preg_match($mathpattern, $q, $matches)){
+        if(preg_match($mathpattern, str_replace("x", "*", $q), $matches)){
             $calculation = $matches[0];
             eval("\$result = $calculation;");
             $answers = "I have calulated ". $calculation ." and the anwser is ". $result;
         }
-        if(preg_match('/[-+]?\d+(\.\d+)?\s*[\/*+-]\s*[-+]?\d+(\.\d+)?/', $q, $matches)){
+        if(preg_match('/[-+]?\d+(\.\d+)?\s*[\/*+-]\s*[-+]?\d+(\.\d+)?/', str_replace("x", "*", $q), $matches)){
             $calculation = $matches[0];
             eval("\$result = $calculation;");
             $answers = "I have calulated ". $calculation ." and the anwser is ". $result;
