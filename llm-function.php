@@ -5,6 +5,7 @@
         //function to run an AI to answer some question of users
         $answers = "For that I do not have the answer yet.";
         $strpattern = '/\b(calculate|calculation)\b/i';
+        $mathpattern = '/[-+]?\d+(\.\d+)?\s*[\/*+-]\s*[-+]?\d+(\.\d+)?/';
 
         if(str_contains(strtolower($q),"moin")
         || str_contains(strtolower($q),"mojn")
@@ -24,11 +25,17 @@
         if(preg_match($strpattern, $q)){
             $pattern = '/(\d+\s*[\+\-\*\/]\s*\d+)/';
             
-            if(preg_match($pattern, $q, $matches)){
+            if(preg_match($pattern, $q, $matches) || preg_match($mathpattern, $q, $matches)){
                 $calculation = $matches[0];
                 eval("\$result = $calculation;");
                 $answers = "The anwser is ". $result;
             }
+        }
+
+        if(preg_match($mathpattern, $q, $matches)){
+            $calculation = $matches[0];
+            eval("\$result = $calculation;");
+            $answers = "The anwser is ". $result;
         }
 
         return $answers;
