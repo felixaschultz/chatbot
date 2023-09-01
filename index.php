@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $botname = "Chatbot 0.2 beta";
+    include("general-infos.php");
     if(!isset($_GET["chat"])){
         header("Location: ?chat=" . rand());
     }

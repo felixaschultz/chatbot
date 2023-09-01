@@ -10,30 +10,9 @@
 
     $id = json_decode(file_get_contents("php://input"), true)["id"];
     $question = json_decode(file_get_contents("php://input"), true)["message"];
-    if($question == "What is the meaning of life?"){
-        $answer .= 42;
-    }
+    include("llm-function.php");
 
-    if(str_contains(strtolower($question),"moin") ||
-    str_contains(strtolower($question),"mojn")){
-        $answer .= "Moin, do";
-    }
-
-    if($question == "What is your name?"){
-        $answer .= "Chatbot";
-    }
-
-    if(str_contains(strtolower($question), "fsdk")){
-        $answer .= "My answer doesn´t convern!";
-    }
-
-    if($question == "How old are you?"){
-        $answer .= "My age is not relevant for you to know!";
-    }
-
-    if(str_contains($question, "profession")){
-        $answer .= "I don´t know the word profession? Please ask me something else.";
-    }
+    $answer = llm($question);
 
     if(!isset($_SESSION["chats"])){
         $_SESSION["chats"] = array(
