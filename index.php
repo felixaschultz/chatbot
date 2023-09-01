@@ -78,6 +78,26 @@
                 </section>
                 <p class="chat-user">You</p>
             </article>
+            <?php 
+                if(isset($_SESSION["answer"])){
+                    if(is_array($_SESSION["answer"])){
+                        foreach($_SESSION["answer"] as $question){
+                            echo '<article class="chat-message-container --user">
+                                <section class="chat-message">
+                                    '. $question["question"] .'
+                                </section>
+                                <p class="chat-user">You</p>
+                            </article>';
+                            echo '<article class="chat-message-container --bot">
+                                <section class="chat-message">
+                                    '. $question["answer"] .'
+                                </section>
+                                <p class="chat-user">Chatbot</p>
+                            </article>';
+                        }   
+                    }
+                }
+            ?>
         </section>
         <footer class="chat-footer">
             <form method="post" id="chatbot">
@@ -124,6 +144,14 @@
         form.addEventListener("submit", function(e){
             e.preventDefault();
             const question = document.querySelector(".chatbot-inputfield").value;
+            messageContainer.innerHTML += `
+                <article class="chat-message-container --user">
+                    <section class="chat-message">
+                        ${question}
+                    </section>
+                    <p class="chat-user">You</p>
+                </article>
+                `;
             fetchData(question);
         })
 
