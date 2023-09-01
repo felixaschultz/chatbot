@@ -13,6 +13,11 @@
         $answer = 42;
     }
 
+    if(strtolower($question) == "moin" ||
+        strtolower($question) == "mojn"){
+        $answer = "Moin, do";
+    }
+
     if($question == "What is your name?"){
         $answer = "Chatbot";
     }
