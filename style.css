@@ -278,6 +278,24 @@ body{
 /* suggestions container */
 .suggestions{
     padding: .8rem 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.suggestions-title{
+    padding: 0 .5rem;
+}
+
+.footer-form{
+    display: grid;
+}
+
+.suggestions-container{
+    width: 100%;
+    overflow-x: scroll;
+    display: flex;
+    flex: 10 0 auto
 }
 
 .question{
@@ -286,10 +304,12 @@ body{
     width: max-content;
     display: inline-block;
     padding: .6rem;
+    margin: 0 .6rem;
     cursor: pointer;
     background-color: transparent;
     font-size: .95rem;
     color: #fff;
+    flex: 10 0 auto
 }
 
 .question:hover{

@@ -91,19 +91,39 @@
             ?>
         </section>
         <footer class="chat-footer">
-            <form method="post" id="chatbot">
+            <form method="post" id="chatbot" class="footer-form">
                 <input type="hidden" name="id" id="id" value="<?php echo $_GET["chat"];?>">
                 <section class="suggestions">
-                    Suggestions:
-                    <button data-question="What is your name?" class="question">
-                        What is your name?
-                    </button>
-                    <button data-question="How old are you?" class="question">
-                        How old are you?
-                    </button>
-                    <button data-question="What is the meaning of life?" class="question">
-                        What is the meaning of life?
-                    </button>
+                    <p class="suggestions-title">Suggestions</p>
+                    <section class="suggestions-container">
+                        <button data-question="What is your name?" class="question">
+                            What is your name?
+                        </button>
+                        <button data-question="How old are you?" class="question">
+                            How old are you?
+                        </button>
+                        <button data-question="What is the meaning of life?" class="question">
+                            What is the meaning of life?
+                        </button>
+                        <button data-question="Calculate the square root of 25" class="question">
+                            Calculate the square root of 25
+                        </button>
+                        <button data-question="What is 5+2?" class="question">
+                            What is 5+2?
+                        </button>
+                        <button data-question="What is 5+2?" class="question">
+                            What is 5+2?
+                        </button>
+                        <button data-question="What is 5+2?" class="question">
+                            What is 5+2?
+                        </button>
+                        <button data-question="What is 5+2?" class="question">
+                            What is 5+2?
+                        </button>
+                        <button data-question="What is 5+2?" class="question">
+                            What is 5+2?
+                        </button>
+                    </section>
                 </section>
                 <label for="" class="chatbot-container">
                     <textarea class="chatbot-inputfield" placeholder="Type your message" name="message"  cols="30" rows="3"></textarea>
