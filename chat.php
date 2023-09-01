@@ -43,11 +43,21 @@
                 "chat_id" => $id
             ]
         );
+        $_SESSION["chats"] = array(
+            [
+                "id" => $id,
+                "question" => $question,
+            ]
+        );
     }else{
         array_push($_SESSION["answer"], [
             "question" => $question,
             "answer" => $answer,
             "chat_id" => $id
+        ]);
+        array_push($_SESSION["chats"], [
+            "id" => $id,
+            "question" => $question,
         ]);
     }
 
