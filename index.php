@@ -100,6 +100,9 @@
                 <section class="suggestions">
                     <p class="suggestions-title">Suggestions</p>
                     <section class="suggestions-container">
+                        <button data-question="Tell me a joke" class="question">
+                            Tell me a joke
+                        </button>
                         <button data-question="What is your name?" class="question">
                             What is your name?
                         </button>
