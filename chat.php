@@ -74,14 +74,16 @@
             [
                 "question" => $question,
                 "answer" => $answer,
-                "chat_id" => $id
+                "chat_id" => $id,
+                "timestamp" => time()
             ]
         );
     }else{
         array_push($_SESSION["chats"]["answers"], [
             "question" => $question,
             "answer" => $answer,
-            "chat_id" => $id
+            "chat_id" => $id,
+            "timestamp" => time()
         ]);
     }
 
@@ -109,7 +111,8 @@
     if(!isset($_SESSION["chats"])){
         $_SESSION["chats"] = [
             "chat" => $chats,
-            "answers" => $allAnswers
+            "answers" => $allAnswers,
+            "timestamp" => time()
         ];
     }
     echo json_encode($answer);
