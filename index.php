@@ -204,7 +204,7 @@
                             <span class="loading-item"></span>
                         </div>
                     </section>
-                    <p class="chat-user">Chatbot</p>
+                    <p class="chat-user"><?php echo $botname?></p>
                 </article>
                 `;
                 return e.json() 
