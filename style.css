@@ -317,6 +317,18 @@ body{
     border-color: var(--ci-color);
 }
 
+/* Bot selector */
+.bot-selector{
+    padding: 1rem 2rem;
+    appearance: none;
+    width: max-content;
+    background-color: color-mix(in srgb, var(--ci-color) 60%, var(--baseColor) 30%);
+    font-size: .86rem;
+    color: #fff;
+    border: none;
+    text-align: center;
+    margin-top: .5rem;
+}
 /* Loading icon */
 .loading{
     position: relative;

@@ -42,7 +42,7 @@
         if (isset($response_data['choices'][0]['content'])) {
             $answer = "GPT-3: ".$response_data['choices'][0]['content'];
         }else{
-            $answer = "GPT-3: I'm sorry, I couldn't generate a response.";
+            $answer = "GPT-3: I'm sorry, I couldn't generate a response. " . $response_data['error'][0]['content'];
         }
     }else{
         $answer = llm($question);
