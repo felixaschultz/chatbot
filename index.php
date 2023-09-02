@@ -45,6 +45,9 @@
                 if(isset($_SESSION["chats"])){
                     foreach($_SESSION["chats"]["chat"] as $chatid){
                         echo "<a href='?chat=".$chatid["id"]."' class='lq-question'>".$chatid["question"]."</a>";
+                        if(isset($chatid["timestamp"])){
+                            echo $chatid["timestamp"];
+                        }
                     }
                 }
             ?>
@@ -71,13 +74,13 @@
                                         <section class="chat-message">
                                             '. $question["question"] .'
                                         </section>
-                                        
+                                        '. date("d. m Y", $question["timestamp"]) .'
                                     </article>';
                                     echo '<article class="chat-message-container --bot">
                                         <section class="chat-message">
                                             '. $question["answer"] .'
                                         </section>
-                                        <p class="chat-user">'.$botname.'</p>
+                                        <p class="chat-user">'.$botname.' - '. date("d. m Y", $question["timestamp"]) .'</p>
                                     </article>';
                                 }
                                 
