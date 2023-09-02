@@ -165,17 +165,22 @@
         form.addEventListener("submit", function(e){
             e.preventDefault();
             const question = document.querySelector(".chatbot-inputfield").value;
-            messageContainer.innerHTML += `
-                <article class="chat-message-container --user">
-                    <section class="chat-message">
-                        ${question}
-                    </section>
-                    <p class="chat-user">You</p>
-                </article>
-                `;
-            messageContainer.scrollTop = messageContainer.scrollHeight;
-            fetchData(question, id);
-            message.value = "";
+
+            if(question != ""){
+                messageContainer.innerHTML += `
+                    <article class="chat-message-container --user">
+                        <section class="chat-message">
+                            ${question}
+                        </section>
+                        <p class="chat-user">You</p>
+                    </article>
+                    `;
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+                fetchData(question, id);
+                message.value = "";
+            }else{
+                document.querySelector(".chatbot-container").style.borderColor = "red";
+            }
         })
 
         function fetchData(e, id){
