@@ -14,6 +14,10 @@
     $bot = json_decode(file_get_contents("php://input"), true)["bot"];
     include("llm-function.php");
 
+    if($question == ""){
+        return;
+    }
+
     if($bot == "gpt-3"){
         $api_key = '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';
         $url = 'https://api.openai.com/v1/chat/completions';
