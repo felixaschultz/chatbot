@@ -75,15 +75,14 @@
             foreach ($sqaure[2] as $match) {
                 $number = floatval($match);
                 $result = sqrt($number);
-                $answers = "Square root of $number is: $result\n";
+                $answers = "The square root of $number is: $result";
             }
         } else if(preg_match_all('/(calculate|calculate the|what\'s the|what is the) square root of (\d+(\.\d+)?)/i', str_replace("x", "*", $q), $sqaure)){
             for ($i = 0; $i < count($sqaure[0]); $i++) {
-                $questionType = $sqaure[1][$i];
                 $number = floatval($sqaure[2][$i]);
                 $result = sqrt($number);
                 
-                $answers = "$questionType square root of $number is: $result";
+                $answers = "The square root of $number is: $result";
             }
         }
 
