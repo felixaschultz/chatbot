@@ -3,10 +3,20 @@
         include("./general-infos.php");
         include("./black-list.php");
         include("./jokes.php");
+        $createdOn = "2023-08-28";
         //function to run an AI to answer some question of users
         $answers = "For that I do not have the answer yet.";
         $strpattern = '/\b(calculate|calculation)\b/i';
         $mathpattern = '/[-+]?\d+(\.\d+)?\s*[\/*+-]\s*[-+]?\d+(\.\d+)?/';
+        $birthdate = new DateTime($createdOn);
+        // Get the current date
+        $currentDate = new DateTime();
+
+        // Calculate the difference between the current date and the birthday
+        $age = $birthdate->diff($currentDate)->y;
+        $createdOn = date("d. m Y", strtotime($createdOn));
+        
+
         $answers = "For that I do not have the answer yet.";
         if(str_contains(strtolower($q),"moin")
         || str_contains(strtolower($q),"mojn")
@@ -17,7 +27,7 @@
         } else if($q == "What is your name?"){
             $answers = "Hi my name is ".$botname;
         } else if($q == "How old are you?"){
-            $answers = "I´m only a few days old. My programmers are working hard, to make me better.";
+            $answers = "I´m {$age} years old. I was born on {$createdOn} and I´m being currently developed by my Master!";
         } else if(str_contains(strtolower($q), "your purpose")){
             $answers = "My purpose is to serve you with some basic information. My developer has worked som simply statements in
             for you to test. I will do my best to learn more infos for you.";
