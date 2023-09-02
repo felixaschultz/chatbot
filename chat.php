@@ -5,8 +5,9 @@
 	header("Access-Control-Allow-Headers: Content-Type");
     session_start();
 
-    $questions = [];
     $answer = "";
+    $chats = array();
+    $allAnswers = array();
 
     $id = json_decode(file_get_contents("php://input"), true)["id"];
     $question = json_decode(file_get_contents("php://input"), true)["message"];
@@ -52,24 +53,24 @@
         $answer = llm($question);
     }
 
-    if(!isset($_SESSION["chats"])){
-        $_SESSION["chats"] = array(
+    if(!isset($_SESSION["chats"]["chat"])){
+        $chats = array(
             [
                 "id" => $id,
                 "question" => $question,
             ]
         );
     }else{
-        if(!in_array_recursive($id, $_SESSION["chats"], true)){
-            array_push($_SESSION["chats"], [
+        if(!in_array_recursive($id, $chats, true)){
+            array_push($_SESSION["chats"]["chat"], [
                 "id" => $id,
                 "question" => $question,
             ]);
         }
     }
 
-    if(!isset($_SESSION["answer"])){
-        $_SESSION["answer"] = array(
+    if(!isset($_SESSION["chats"]["answers"])){
+        $allAnswers = array(
             [
                 "question" => $question,
                 "answer" => $answer,
@@ -77,7 +78,7 @@
             ]
         );
     }else{
-        array_push($_SESSION["answer"], [
+        array_push($_SESSION["chats"]["answers"], [
             "question" => $question,
             "answer" => $answer,
             "chat_id" => $id
@@ -105,5 +106,11 @@
         return false;
     }
 
+    if(!isset($_SESSION["chats"])){
+        $_SESSION["chats"] = [
+            "chat" => $chats,
+            "answers" => $allAnswers
+        ];
+    }
     echo json_encode($answer);
 ?>

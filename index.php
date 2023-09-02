@@ -43,7 +43,7 @@
             <p>August</p>
             <?php
                 if(isset($_SESSION["chats"])){
-                    foreach($_SESSION["chats"] as $chatid){
+                    foreach($_SESSION["chats"]["chat"] as $chatid){
                         echo "<a href='?chat=".$chatid["id"]."' class='lq-question'>".$chatid["question"]."</a>";
                     }
                 }
@@ -63,9 +63,9 @@
         <section class="message-container">
             <?php
                 if(isset($_GET["chat"])){
-                    /* if($_SESSION["answer"]["id"] === $_GET["chat"]){ */
-                        if(isset($_SESSION["answer"]) && is_array($_SESSION["answer"])){
-                            foreach($_SESSION["answer"] as $question){
+                    /* if($_SESSION["chats"]["answers"]["id"] === $_GET["chat"]){ */
+                        if(isset($_SESSION["chats"]["answers"]) && is_array($_SESSION["chats"]["answers"])){
+                            foreach($_SESSION["chats"]["answers"] as $question){
                                 if($question["chat_id"] == $_GET["chat"]){
                                     echo '<article class="chat-message-container --user">
                                         <section class="chat-message">
