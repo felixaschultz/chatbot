@@ -1,2 +1,2 @@
 <?php
-    $botname = "Chatbot 0.2 beta";
+    $botname = "Chatbot 0.3 beta";
