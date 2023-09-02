@@ -93,6 +93,10 @@
         <footer class="chat-footer">
             <form method="post" id="chatbot" class="footer-form">
                 <input type="hidden" name="id" id="id" value="<?php echo $_GET["chat"];?>">
+                <select name="bot" id="bot" class="bot-selector">
+                    <option value="default"><?php echo $botname ?></option>
+                    <option value="gpt-3">GPT-3</option>
+                </select>
                 <section class="suggestions">
                     <p class="suggestions-title">Suggestions</p>
                     <section class="suggestions-container">
@@ -129,6 +133,7 @@
         const form = document.querySelector("#chatbot");
         const message = document.querySelector(".chatbot-submitMessage");
         const id = document.querySelector("#id").value;
+        let bot = document.querySelector("#bot").value;
         const menuBtn = document.querySelector(".menu");
         const menu = document.querySelector(".latest-questions");
         questionBtn.forEach(btn => {
@@ -153,6 +158,10 @@
             menu.classList.toggle("--open");
         })
 
+        document.querySelector("#bot").addEventListener("change", (e) => {
+            bot = e.target.value;
+        })
+
         form.addEventListener("submit", function(e){
             e.preventDefault();
             const question = document.querySelector(".chatbot-inputfield").value;
@@ -174,7 +183,8 @@
                 method: "POST",
                 body: JSON.stringify({
                     message: e,
-                    id: id
+                    id: id,
+                    bot: bot
                 })
             }).then((e) => {
                 messageContainer.innerHTML += `
