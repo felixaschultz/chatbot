@@ -35,6 +35,33 @@
             $answers = $jokes[array_rand($jokes)];
         }
 
+        if(preg_match('/convert (\d+) (fahrenheit|celcius|celsius) to (fahrenheit|celcius|celsius)/i', $q, $convert)){
+            $value = intval($convert[1]);
+            $fromUnit = strtolower($convert[2]);
+            $toUnit = strtolower($convert[3]);
+            if ($fromUnit === "fahrenheit" && $toUnit === "celsius" || $toUnit === "celcius" && $fromUnit === "fahrenheit") {
+                $result = floatval(($value - 32) * 5/9);
+                $answers = "$value Fahrenheit is equal to $result Celsius";
+                $answers = "
+                    To convert $value degrees Fahrenheit to Celsius, you can use the following formula:<br>
+                    °C=(°F−32)× 9/5 <br>
+                    Let us calculate that: <br>
+                    °C=({$value}°F−32)× 9/5 =(−27°F)× 9/5={$result}°C <br><br>
+                    So, $value degrees Fahrenheit is equal to $result degrees Celsius.
+                ";
+            } elseif ($fromUnit === "celsius" && $toUnit === "fahrenheit" || $toUnit === "fahrenheit" && $fromUnit === "celcius") {
+                $result = floatval(($value * 9/5) + 32);
+                /* $answers = "$value Celsius is equal to $result Fahrenheit"; */
+                $answers = "
+                    To convert $value degrees Celsius to Fahrenheit, you can use the following formula:<br>
+                    °F=(°C×5/9)+32 <br>
+                    Let us calculate that: <br>
+                    °F=({$value}°C×9/5)+32 = ({($value * 9/5)}°F) + 32 = {$result}°F<br><br>
+                    So, $value degrees Celsius is equal to $result degrees Fahrenheit.
+                ";
+            }
+        }
+
         if(preg_match($strpattern, $q)){
             $pattern = '/(\d+\s*[\+\-\*\/]\s*\d+)/';
             
