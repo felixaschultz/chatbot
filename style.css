@@ -163,6 +163,7 @@ body{
     display: block;
     color: #fff;
     text-decoration: none;
+    border-radius: .4rem;
 }
 
 .lq-question:hover, .lq-question:focus, .lq-question:focus-within{
@@ -309,7 +310,7 @@ body{
     background-color: transparent;
     font-size: .95rem;
     color: #fff;
-    flex: 10 0 auto
+    flex: 10 0 auto;
 }
 
 .question:hover{
