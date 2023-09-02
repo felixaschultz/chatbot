@@ -61,7 +61,7 @@
             ]
         );
     }else{
-        if(!in_array_recursive($id, $chats, true)){
+        if(!in_array_recursive($id, $_SESSION["chats"]["chat"], true)){
             array_push($_SESSION["chats"]["chat"], [
                 "id" => $id,
                 "question" => $question,
