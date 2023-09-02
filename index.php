@@ -71,13 +71,13 @@
                                         <section class="chat-message">
                                             '. $question["question"] .'
                                         </section>
-                                        <p class="chat-user">You</p>
+                                        
                                     </article>';
                                     echo '<article class="chat-message-container --bot">
                                         <section class="chat-message">
                                             '. $question["answer"] .'
                                         </section>
-                                        <p class="chat-user">Chatbot</p>
+                                        <p class="chat-user">'.$botname.'</p>
                                     </article>';
                                 }
                                 
