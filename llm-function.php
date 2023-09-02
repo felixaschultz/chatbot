@@ -2,11 +2,12 @@
     function llm($q){
         include("./general-infos.php");
         include("./black-list.php");
+        include("./jokes.php");
         //function to run an AI to answer some question of users
         $answers = "For that I do not have the answer yet.";
         $strpattern = '/\b(calculate|calculation)\b/i';
         $mathpattern = '/[-+]?\d+(\.\d+)?\s*[\/*+-]\s*[-+]?\d+(\.\d+)?/';
-
+        $answers = "For that I do not have the answer yet.";
         if(str_contains(strtolower($q),"moin")
         || str_contains(strtolower($q),"mojn")
         ){
@@ -20,6 +21,8 @@
         } else if(str_contains(strtolower($q), "your purpose")){
             $answers = "My purpose is to serve you with some basic information. My developer has worked som simply statements in
             for you to test. I will do my best to learn more infos for you.";
+        } else if(strtolower($q) == "tell me a joke"){
+            $answers = $jokes[array_rand($jokes)];
         }
 
         if(preg_match($strpattern, $q)){
@@ -43,10 +46,8 @@
                 $number = floatval($sqaure[2][$i]);
                 $result = sqrt($number);
                 
-                $answers = "$questionType square root of $number is: $result\n";
+                $answers = "$questionType square root of $number is: $result";
             }
-        } else {
-            $answers = "No square root formula/question found in the input string.\n";
         }
 
         if(preg_match($mathpattern, str_replace("x", "*", $q), $matches)){
