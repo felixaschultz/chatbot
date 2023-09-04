@@ -2,6 +2,7 @@
     <header class="lq-header">
         <h1 class="chat-header-title"><?php echo $botname;?></h1>
         <a href="index.php" class="cta new-chat">New Chat</a>
+        <a href="logout.php" class="logout">Logout</a>
     </header>
     <h2>Your recent chats</h2>
     <section class="lq-group">
@@ -87,7 +88,7 @@
             </section>
             <label for="" class="chatbot-container">
                 <textarea class="chatbot-inputfield" placeholder="Type your message" name="message"  cols="30" rows="3"></textarea>
-                <span class="counter">0</span>
+                <span class="count"><span class="counter">0</span> / 100</span>
                 <button type="submit" class="chatbot-submitMessage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="send-icon" stroke-width="2"><path d="M.5 1.163A1 1 0 0 1 1.97.28l12.868 6.837a1 1 0 0 1 0 1.766L1.969 15.72A1 1 0 0 1 .5 14.836V10.33a1 1 0 0 1 .816-.983L8.5 8 1.316 6.653A1 1 0 0 1 .5 5.67V1.163Z" fill="currentColor"></path></svg></button>
             </label>
         </form>
@@ -103,12 +104,14 @@ let bot = document.querySelector("#bot").value;
 const menuBtn = document.querySelector(".menu");
 const menu = document.querySelector(".latest-questions");
 const chatbotInput = document.querySelector(".chatbot-inputfield");
-const counterContainer = document.querySelector(".counter");
+const count = document.querySelector(".counter");
+const counterContainer = document.querySelector(".count");
 const MAX_COUNT = 100;
 
 chatbotInput.addEventListener("keyup", function(e){
-    counterContainer.textContent = e.target.value.length;
+    count.textContent = e.target.value.length;
     if(e.target.value.length > MAX_COUNT){
+        e.target.value.substring(0, MAX_COUNT)
         counterContainer.classList.add("invalid");
         message.disabled = true;
         form.disabled = true;

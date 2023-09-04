@@ -37,6 +37,15 @@ body{
 .invalid{
     color: rgb(251, 84, 84);
 }
+
+/* Logout */
+.logout{
+    text-decoration: none;
+    display: inline-block;
+    color: #fff;
+    padding: 15px 0px;
+}
+
 /* Chatbot */
 .chat-header{
     display: flex;
@@ -192,7 +201,7 @@ body{
     border-radius: 50%;
 }
 
-.counter{
+.count{
     position: absolute;
     right: 60px;
     padding: 15px;
