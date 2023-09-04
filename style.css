@@ -194,11 +194,20 @@ body{
     margin-right: 10px;
 }
 
+/* Login screen */
+.login-screen{
+    display: grid;
+    place-content: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 15px;
+}
 /* User profile */
 .userprofile{
     width: 23px;
     height: 23px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .count{
