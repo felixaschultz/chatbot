@@ -24,7 +24,7 @@
             $answers = "Moin";
         } else if($q == "What is the meaning of life?"){
             $answers = 42;
-        } else if($q == "What is your name?"){
+        } else if($q == "What is your name?" || str_contains(strtolower($q), "your name")){
             $answers = "Hi my name is ".$botname;
         } else if($q == "How old are you?"){
             $answers = "I´m {$age} years old. I was born on {$createdOn} and I´m being currently developed by my Master!";
