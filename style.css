@@ -33,6 +33,10 @@ body{
     background-color: var(--borderColor);
 }
 
+/* Invalid */
+.invalid{
+    color: rgb(251, 84, 84);
+}
 /* Chatbot */
 .chat-header{
     display: flex;
@@ -79,7 +83,7 @@ body{
     resize: none;
     padding: 15px;
     background-color: rgb(42, 42, 42);
-    width: 100%;
+    width: calc(100% - 100px);
     color: #fff;
     font-size: .9rem;
     border: none;
@@ -179,6 +183,19 @@ body{
     height: 15px;
     filter: invert(1);
     margin-right: 10px;
+}
+
+/* User profile */
+.userprofile{
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+}
+
+.counter{
+    position: absolute;
+    right: 60px;
+    padding: 15px;
 }
 
 /* CTA styling */

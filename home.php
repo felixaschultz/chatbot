@@ -38,7 +38,7 @@
                                 <section class="chat-message">
                                     '. $question["question"] .'
                                 </section>
-                                '. date("d. m Y", $question["timestamp"]) .'
+                                <img src="'. $_SESSION["profile"] .'" class="userprofile">
                             </article>';
                             echo '<article class="chat-message-container --bot">
                                 <section class="chat-message">
@@ -87,6 +87,7 @@
             </section>
             <label for="" class="chatbot-container">
                 <textarea class="chatbot-inputfield" placeholder="Type your message" name="message"  cols="30" rows="3"></textarea>
+                <span class="counter">0</span>
                 <button type="submit" class="chatbot-submitMessage"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="send-icon" stroke-width="2"><path d="M.5 1.163A1 1 0 0 1 1.97.28l12.868 6.837a1 1 0 0 1 0 1.766L1.969 15.72A1 1 0 0 1 .5 14.836V10.33a1 1 0 0 1 .816-.983L8.5 8 1.316 6.653A1 1 0 0 1 .5 5.67V1.163Z" fill="currentColor"></path></svg></button>
             </label>
         </form>
@@ -101,6 +102,23 @@ const id = "<?php echo $_GET["chat"];?>";
 let bot = document.querySelector("#bot").value;
 const menuBtn = document.querySelector(".menu");
 const menu = document.querySelector(".latest-questions");
+const chatbotInput = document.querySelector(".chatbot-inputfield");
+const counterContainer = document.querySelector(".counter");
+const MAX_COUNT = 100;
+
+chatbotInput.addEventListener("keyup", function(e){
+    counterContainer.textContent = e.target.value.length;
+    if(e.target.value.length > MAX_COUNT){
+        counterContainer.classList.add("invalid");
+        message.disabled = true;
+        form.disabled = true;
+    }else{
+        counterContainer.classList.remove("invalid");
+        message.disabled = false;
+        form.disabled = false;
+    }
+})
+
 questionBtn.forEach(btn => {
     btn.addEventListener("click", function(e){
         e.preventDefault();
@@ -110,7 +128,7 @@ questionBtn.forEach(btn => {
             <section class="chat-message">
                 ${e.target.getAttribute("data-question")}
             </section>
-            <p class="chat-user">You</p>
+            <p class="chat-user"><img src='<?php echo $_SESSION["profile"]; ?>' class="userprofile"> You</p>
         </article>
         `;
         messageContainer.scrollTop = messageContainer.scrollHeight;
@@ -137,7 +155,7 @@ form.addEventListener("submit", function(e){
                 <section class="chat-message">
                     ${question}
                 </section>
-                <p class="chat-user">You</p>
+                <p class="chat-user"><img src='<?php echo $_SESSION["profile"]; ?>' class="userprofile"> You</p>
             </article>
             `;
         messageContainer.scrollTop = messageContainer.scrollHeight;
@@ -178,7 +196,7 @@ function fetchData(e, id){
                 <section class="chat-message">
                     ${answer}
                 </section>
-                <p class="chat-user">Chatbot</p>
+                <p class="chat-user"><?php echo $botname?></p>
             </article>
             `;
 
