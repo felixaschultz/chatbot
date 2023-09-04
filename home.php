@@ -11,9 +11,9 @@
             if(isset($_SESSION["chats"])){
                 foreach($_SESSION["chats"]["chat"] as $chatid){
                     echo "<a href='?chat=".$chatid["id"]."' class='lq-question'>".$chatid["question"]."</a>";
-                    if(isset($chatid["timestamp"])){
+                    /* if(isset($chatid["timestamp"])){
                         echo $chatid["timestamp"];
-                    }
+                    } */
                 }
             }
         ?>
@@ -94,7 +94,7 @@
         </form>
     </footer>
 </main>
-<script>
+<script async>
 const questionBtn = document.querySelectorAll(".question");
 const messageContainer = document.querySelector(".message-container");
 const form = document.querySelector("#chatbot");
@@ -131,7 +131,7 @@ questionBtn.forEach(btn => {
             <section class="chat-message">
                 ${e.target.getAttribute("data-question")}
             </section>
-            <p class="chat-user"><img src='<?php echo $_SESSION["profile"]; ?>' class="userprofile"> You</p>
+            <p class="chat-user"><img src='<?php echo $_SESSION["profile"]; ?>' class="userprofile"></p>
         </article>
         `;
         messageContainer.scrollTop = messageContainer.scrollHeight;
@@ -158,7 +158,7 @@ form.addEventListener("submit", function(e){
                 <section class="chat-message">
                     ${question}
                 </section>
-                <p class="chat-user"><img src='<?php echo $_SESSION["profile"]; ?>' class="userprofile"> You</p>
+                <p class="chat-user"><img src='<?php echo $_SESSION["profile"]; ?>' class="userprofile"></p>
             </article>
             `;
         messageContainer.scrollTop = messageContainer.scrollHeight;

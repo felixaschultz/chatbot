@@ -62,7 +62,8 @@
             [
                 "id" => $id,
                 "question" => $question,
-                "timestamp" => time()
+                "timestamp" => time(),
+                "user" => (isset($_SESSION["email"])) ? $_SESSION["email"] : null
             ]
         );
     }else{
@@ -70,7 +71,8 @@
             array_push($_SESSION["chats"]["chat"], [
                 "id" => $id,
                 "question" => $question,
-                "timestamp" => time()
+                "timestamp" => time(),
+                "user" => (isset($_SESSION["email"])) ? $_SESSION["email"] : null
             ]);
         }
     }

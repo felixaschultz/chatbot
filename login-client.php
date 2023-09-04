@@ -13,6 +13,7 @@
 
     if(isset($token)){
         $_SESSION["name"] = $token["name"];
+        $_SESSION["email"] = $token["email"];
         $_SESSION["profile"] = $token["image"];
         $_SESSION["logged_in"] = true;
         echo "logged_in";
