@@ -95,7 +95,6 @@
         </section>
         <footer class="chat-footer">
             <form method="post" id="chatbot" class="footer-form">
-                <input type="hidden" name="id" id="id" value="<?php echo $_GET["chat"];?>">
                 <select name="bot" id="bot" class="bot-selector">
                     <option value="default"><?php echo $botname ?></option>
                     <option value="gpt-3">GPT-3</option>
@@ -138,7 +137,7 @@
         const messageContainer = document.querySelector(".message-container");
         const form = document.querySelector("#chatbot");
         const message = document.querySelector(".chatbot-submitMessage");
-        const id = document.querySelector("#id").value;
+        const id = "<?php echo $_GET["chat"];?>";
         let bot = document.querySelector("#bot").value;
         const menuBtn = document.querySelector(".menu");
         const menu = document.querySelector(".latest-questions");
