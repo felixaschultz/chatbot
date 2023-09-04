@@ -62,6 +62,7 @@
             [
                 "id" => $id,
                 "question" => $question,
+                "timestamp" => time()
             ]
         );
     }else{
@@ -69,6 +70,7 @@
             array_push($_SESSION["chats"]["chat"], [
                 "id" => $id,
                 "question" => $question,
+                "timestamp" => time()
             ]);
         }
     }

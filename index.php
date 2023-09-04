@@ -40,7 +40,7 @@
         </header>
         <h2>Your recent chats</h2>
         <section class="lq-group">
-            <p>August</p>
+            <p>September</p>
             <?php
                 if(isset($_SESSION["chats"])){
                     foreach($_SESSION["chats"]["chat"] as $chatid){
