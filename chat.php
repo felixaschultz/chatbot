@@ -12,6 +12,7 @@
     $id = json_decode(file_get_contents("php://input"), true)["id"];
     $question = json_decode(file_get_contents("php://input"), true)["message"];
     $bot = json_decode(file_get_contents("php://input"), true)["bot"];
+    include("general-infos.php");
     include("llm-function.php");
 
     if($question == ""){
