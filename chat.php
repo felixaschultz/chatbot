@@ -65,9 +65,13 @@
     $num = mysqli_num_rows($query);
 
     if($num === 0){
-        $questions = "INSERT INTO chats(chat_name, created_at, user, chat_id) VALUES('$question', '$timestamp', '$logged_in_user', '$id')";
+        $questions = "INSERT INTO chats(chat_name, created_at, user, chat_id) VALUES('$answer', '$timestamp', '$logged_in_user', '$id')";
+        $answerQuery = mysqli_query($db, $questions);
+    }else{
+        $questions = "UPDATE chats SET chat_name = '$answer', created_at = '$timestamp' WHERE chat_id = $id";
         $answerQuery = mysqli_query($db, $questions);
     }
+
     $answers = "INSERT INTO answers(question, answer, chat_id, created_at) VALUES('$question', '$answer', $id, '$timestamp')";
     $answerQuery = mysqli_query($db, $answers);
     
