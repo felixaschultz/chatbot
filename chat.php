@@ -63,55 +63,19 @@
     $chatSQL = "SELECT * FROM chats WHERE chat_id = $id";
     $query = mysqli_query($db, $chatSQL);
     $num = mysqli_num_rows($query);
-
+    $savedAnswer = htmlentities($answer);
+    $savedQuestion = htmlentities($question);
     if($num === 0){
-        $questions = "INSERT INTO chats(chat_name, created_at, user, chat_id) VALUES('$answer', '$timestamp', '$logged_in_user', '$id')";
+        $questions = "INSERT INTO chats(chat_name, created_at, user, chat_id) VALUES('$savedAnswer', '$timestamp', '$logged_in_user', '$id')";
         $answerQuery = mysqli_query($db, $questions);
     }else{
-        $questions = "UPDATE chats SET chat_name = '$answer', created_at = '$timestamp' WHERE chat_id = $id";
+        $questions = "UPDATE chats SET chat_name = '$savedAnswer', created_at = '$timestamp' WHERE chat_id = $id";
         $answerQuery = mysqli_query($db, $questions);
     }
 
-    $answers = "INSERT INTO answers(question, answer, chat_id, created_at) VALUES('$question', '$answer', $id, '$timestamp')";
+    $answers = "INSERT INTO answers(question, answer, chat_id, created_at) VALUES('$savedQuestion', '$savedAnswer', $id, '$timestamp')";
     $answerQuery = mysqli_query($db, $answers);
-    
-    /* if(!isset($_SESSION["chats"]["chat"])){
-        $chats = array(
-            [
-                "id" => $id,
-                "question" => $question,
-                "timestamp" => time(),
-                "user" => (isset($_SESSION["email"])) ? $_SESSION["email"] : null
-            ]
-        );
-    }else{
-        if(!in_array_recursive($id, $_SESSION["chats"]["chat"], true)){
-            array_push($_SESSION["chats"]["chat"], [
-                "id" => $id,
-                "question" => $question,
-                "timestamp" => time(),
-                "user" => (isset($_SESSION["email"])) ? $_SESSION["email"] : null
-            ]);
-        }
-    } */
-
-    /* if(!isset($_SESSION["chats"]["answers"])){
-        $allAnswers = array(
-            [
-                "question" => $question,
-                "answer" => $answer,
-                "chat_id" => $id,
-                "timestamp" => time()
-            ]
-        );
-    }else{
-        array_push($_SESSION["chats"]["answers"], [
-            "question" => $question,
-            "answer" => $answer,
-            "chat_id" => $id,
-            "timestamp" => time()
-        ]);
-    } */
+    $answer = $savedAnswer;
 
     /* Fra PHP.net */
     function in_array_recursive(mixed $needle, array $haystack, bool $strict): bool
@@ -133,13 +97,6 @@
 
         return false;
     }
-
-    if(!isset($_SESSION["chats"])){
-        $_SESSION["chats"] = [
-            "chat" => $chats,
-            "answers" => $allAnswers,
-            "timestamp" => time()
-        ];
-    }
+    
     echo json_encode($answer);
 ?>
