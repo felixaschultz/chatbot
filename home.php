@@ -132,6 +132,7 @@ const count = document.querySelector(".counter");
 const counterContainer = document.querySelector(".count");
 const MAX_COUNT = 100;
 
+chatbotInput.setAttribute("maxlength", MAX_COUNT);
 chatbotInput.addEventListener("keyup", function(e){
     count.textContent = e.target.value.length;
     if(e.target.value.length > MAX_COUNT){
