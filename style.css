@@ -201,7 +201,37 @@ body{
     justify-content: center;
     height: 100vh;
     padding: 15px;
+    grid-column: 1/3;
+    text-align: center;
 }
+
+.cta.--login{
+    width: 100%;
+    font-size: 1rem;
+    margin-top: .7rem;
+    padding: .75rem;
+}
+
+.IntastellarSignin{
+    margin-inline: auto;
+}
+
+.login_form{
+    padding: 15px 0;
+}
+
+.login_form label{
+    margin-bottom: .65rem;
+    font-size: 1.3rem;
+    display: inline-block;
+}
+
+.input-field{
+    padding: .8rem;
+    display: block;
+    width: 100%;
+}
+
 /* User profile */
 .userprofile{
     width: 23px;
