@@ -175,7 +175,8 @@ function fetchData(e, id){
         body: JSON.stringify({
             message: e,
             id: id,
-            bot: bot
+            bot: bot,
+            user: "<?php echo $_SESSION["email"]; ?>"
         })
     }).then((e) => {
         messageContainer.innerHTML += `

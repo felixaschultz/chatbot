@@ -12,6 +12,8 @@
     $id = json_decode(file_get_contents("php://input"), true)["id"];
     $question = json_decode(file_get_contents("php://input"), true)["message"];
     $bot = json_decode(file_get_contents("php://input"), true)["bot"];
+    $timestamp = time();
+    $user = json_decode(file_get_contents("php://input"), true)["user"];
     include("general-infos.php");
     include("llm-function.php");
 
@@ -58,7 +60,18 @@
         $answer = llm($question);
     }
 
-    if(!isset($_SESSION["chats"]["chat"])){
+    $chatSQL = "SELECT * FROM chats WHERE chat_id = $id";
+    $query = mysqli_query($db, $chatSQL);
+    $num = mysqli_num_rows($query);
+
+    if($num === 0){
+        $questions = "INSERT INTO chats(chat_name, created_at, user, chat_id) VALUES('$question', '$timestamp', '$user', '$id')";
+        $answerQuery = mysqli_query($db, $questions);
+    }
+    $answers = "INSERT INTO answers(question, answer, chat_id, created_at) VALUES('$question', '$answer', $id, '$timestamp')";
+    $answerQuery = mysqli_query($db, $answers);
+    
+    /* if(!isset($_SESSION["chats"]["chat"])){
         $chats = array(
             [
                 "id" => $id,
@@ -76,9 +89,9 @@
                 "user" => (isset($_SESSION["email"])) ? $_SESSION["email"] : null
             ]);
         }
-    }
+    } */
 
-    if(!isset($_SESSION["chats"]["answers"])){
+    /* if(!isset($_SESSION["chats"]["answers"])){
         $allAnswers = array(
             [
                 "question" => $question,
@@ -94,7 +107,7 @@
             "chat_id" => $id,
             "timestamp" => time()
         ]);
-    }
+    } */
 
     /* Fra PHP.net */
     function in_array_recursive(mixed $needle, array $haystack, bool $strict): bool
