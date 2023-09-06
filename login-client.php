@@ -9,12 +9,17 @@
     $chats = array();
     $allAnswers = array();
 
-    $token = json_decode(file_get_contents("php://input"), true)["token"];
-
-    if(isset($token)){
+    
+    if(isset(json_decode(file_get_contents("php://input"), true)["token"])){
+        $token = json_decode(file_get_contents("php://input"), true)["token"];
         $_SESSION["name"] = $token["name"];
         $_SESSION["email"] = $token["email"];
         $_SESSION["profile"] = $token["image"];
+        $_SESSION["logged_in"] = true;
+        echo "logged_in";
+    }else if(isset(json_decode(file_get_contents("php://input"), true)["email"])){
+        $email = json_decode(file_get_contents("php://input"), true)["email"];
+        $_SESSION["email"] = $email;
         $_SESSION["logged_in"] = true;
         echo "logged_in";
     }
