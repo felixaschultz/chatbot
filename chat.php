@@ -13,7 +13,7 @@
     $question = json_decode(file_get_contents("php://input"), true)["message"];
     $bot = json_decode(file_get_contents("php://input"), true)["bot"];
     $timestamp = time();
-    $user = json_decode(file_get_contents("php://input"), true)["user"];
+    $logged_in_user = json_decode(file_get_contents("php://input"), true)["user"];
     include("general-infos.php");
     include("llm-function.php");
 
@@ -65,7 +65,7 @@
     $num = mysqli_num_rows($query);
 
     if($num === 0){
-        $questions = "INSERT INTO chats(chat_name, created_at, user, chat_id) VALUES('$question', '$timestamp', '$user', '$id')";
+        $questions = "INSERT INTO chats(chat_name, created_at, user, chat_id) VALUES('$question', '$timestamp', '$logged_in_user', '$id')";
         $answerQuery = mysqli_query($db, $questions);
     }
     $answers = "INSERT INTO answers(question, answer, chat_id, created_at) VALUES('$question', '$answer', $id, '$timestamp')";
