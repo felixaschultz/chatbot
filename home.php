@@ -15,7 +15,7 @@
                 $query = mysqli_query($db, $chatSQL);
 
                 while($row = $query->fetch_assoc()){
-                    echo "<a href='?chat=".$row["chat_id"]."' class='lq-question'>".$row["chat_name"]."</a> <br>";
+                    echo "<a href='?chat=".$row["chat_id"]."' class='lq-question'>".$row["chat_name"]."</a>";
                 }
             }
         ?>
