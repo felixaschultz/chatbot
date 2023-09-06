@@ -29,7 +29,9 @@
     <script src="https://account.api.intastellarsolutions.com/login.js"></script>
     <script>
         window.addEventListener("DOMContentLoaded", function (){
-            document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight;
+            if(document.querySelector(".message-container") != null){
+                document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight;
+            }
         })
     </script>
 </head>
