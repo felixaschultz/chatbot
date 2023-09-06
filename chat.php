@@ -57,7 +57,7 @@
             $answer = "GPT-3: I'm sorry, I couldn't generate a response. " . $error;
         }
     }else{
-        $answer = llm($question);
+        $answer = llm($question, $id);
     }
 
     $chatSQL = "SELECT * FROM chats WHERE chat_id = $id";
@@ -66,7 +66,7 @@
     $savedAnswer = htmlentities($answer);
     $savedQuestion = htmlentities($question);
     if($num === 0){
-        $questions = "INSERT INTO chats(chat_name, created_at, user, chat_id) VALUES('$savedAnswer', '$timestamp', '$logged_in_user', '$id')";
+        $questions = "INSERT INTO chats(chat_name, created_at, user, chat_id, username) VALUES('$savedAnswer', '$timestamp', '$logged_in_user', '$id', null)";
         $answerQuery = mysqli_query($db, $questions);
     }else{
         $questions = "UPDATE chats SET chat_name = '$savedAnswer', created_at = '$timestamp' WHERE chat_id = $id";
@@ -97,6 +97,6 @@
 
         return false;
     }
-    
+
     echo json_encode($answer);
 ?>
