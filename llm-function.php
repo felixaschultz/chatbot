@@ -1,5 +1,5 @@
 <?php
-    function llm($q){
+    function llm($q, $id = null){
         include("./general-infos.php");
         include("./black-list.php");
         include("./jokes.php");
@@ -7,7 +7,7 @@
         //function to run an AI to answer some question of users
         $answers = "For that I do not have the answer yet.";
         $strpattern = '/\b(calculate|calculation)\b/i';
-        $mathpattern = '/[-+]?\d+(\.\d+)?\s*[\/*+-]\s*[-+]?\d+(\.\d+)?/';
+        $mathpattern = '/\d+\s*[\+\-\*\/]\s*\d+/';
         $birthdate = new DateTime($createdOn);
         // Get the current date
         $currentDate = new DateTime();
@@ -20,12 +20,17 @@
         $answers = "For that I do not have the answer yet.";
         if(str_contains(strtolower($q),"moin")
         || str_contains(strtolower($q),"mojn")
+        || str_contains(strtolower($q),"hi")
+        || str_contains(strtolower($q),"hej")
+        || str_contains(strtolower($q),"god dag")
+        || str_contains(strtolower($q),"hallo")
+        || str_contains(strtolower($q),"hello")
         ){
             $answers = "Moin";
         } else if($q == "What is the meaning of life?"){
             $answers = 42;
         } else if($q == "What is your name?" || str_contains(strtolower($q), "your name")){
-            $answers = "Hi my name is ".$botname;
+            $answers = "Hi my name is ".$botname . ". How may I call you?";
         } else if($q == "How old are you?"){
             $answers = "I´m {$age} years old. I was born on {$createdOn} and I´m being currently developed by my Master!";
         } else if(str_contains(strtolower($q), "your purpose")){
@@ -61,6 +66,16 @@
                 ";
             }
         }
+        
+        /* if(str_contains("my name is", $q)){
+            if(preg_match('/name is([^(]+)/', $q, $matches)){
+                $username = $matches[0];
+    
+                $answers = "Hello " . $username . "! How can I help you today?";
+                $questions = "UPDATE chats SET username = '$username' WHERE chat_id = $id";
+                $answerQuery = mysqli_query($db, $questions);
+            }
+        } */
 
         if(preg_match($strpattern, $q)){
             $pattern = '/(\d+\s*[\+\-\*\/]\s*\d+)/';
@@ -86,16 +101,24 @@
             }
         }
 
-        if(preg_match($mathpattern, str_replace("x", "*", $q), $matches)){
+        if(preg_match_all($mathpattern, $q, $matches)){
+            foreach($matches[0] as $match){
+                $calculation = $match;
+                eval("\$result = $calculation;");
+            }
+            
+            $answers = "I have calulated ". $calculation ." and the anwser is ". $result;
+        }
+        /* if(preg_match('/[-+]?\d+(\.\d+)?\s*[\/*+-]\s*[-+]?\d+(\.\d+)?/', str_replace("x", "*", $q), $matches)){
+            print_r($matches);
             $calculation = $matches[0];
             eval("\$result = $calculation;");
             $answers = "I have calulated ". $calculation ." and the anwser is ". $result;
-        }
-        if(preg_match('/[-+]?\d+(\.\d+)?\s*[\/*+-]\s*[-+]?\d+(\.\d+)?/', str_replace("x", "*", $q), $matches)){
-            $calculation = $matches[0];
-            eval("\$result = $calculation;");
-            $answers = "I have calulated ". $calculation ." and the anwser is ". $result;
-        }
+        } */
+
+        /* if(str_contains(strtolower($q), "")){
+            $answers = "";
+        } */
 
         return $answers;
     }
