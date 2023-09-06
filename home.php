@@ -10,7 +10,8 @@
         <?php
             if(isset($_GET["chat"])){
                 $id = $_GET["chat"];
-                $chatSQL = "SELECT * FROM chats ORDER BY id DESC";
+                $username = $_SESSION["email"];
+                $chatSQL = "SELECT * FROM chats WHERE user = '$username' ORDER BY id DESC";
                 $query = mysqli_query($db, $chatSQL);
 
                 while($row = $query->fetch_assoc()){

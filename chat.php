@@ -12,7 +12,7 @@
     $id = json_decode(file_get_contents("php://input"), true)["id"];
     $question = json_decode(file_get_contents("php://input"), true)["message"];
     $bot = json_decode(file_get_contents("php://input"), true)["bot"];
-    $timestamp = time();
+    $timestamp = date("Y-m-d H:i:s");
     $logged_in_user = json_decode(file_get_contents("php://input"), true)["user"];
     include("general-infos.php");
     include("llm-function.php");
