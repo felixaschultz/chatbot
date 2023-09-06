@@ -8,12 +8,13 @@
     <section class="lq-group">
         <p>September</p>
         <?php
-            if(isset($_SESSION["chats"])){
-                foreach($_SESSION["chats"]["chat"] as $chatid){
-                    echo "<a href='?chat=".$chatid["id"]."' class='lq-question'>".$chatid["question"]."</a>";
-                    /* if(isset($chatid["timestamp"])){
-                        echo $chatid["timestamp"];
-                    } */
+            if(isset($_GET["chat"])){
+                $id = $_GET["chat"];
+                $chatSQL = "SELECT * FROM chats ORDER BY id DESC";
+                $query = mysqli_query($db, $chatSQL);
+
+                while($row = $query->fetch_assoc()){
+                    echo "<a href='?chat=".$row["chat_id"]."'>".$row["chat_name"]."</a> <br>";
                 }
             }
         ?>
@@ -31,7 +32,29 @@
     </header>
     <section class="message-container">
         <?php
+
             if(isset($_GET["chat"])){
+                $id = $_GET["chat"];
+                $chatSQL = "SELECT * FROM answers WHERE chat_id = $id";
+                $query = mysqli_query($db, $chatSQL);
+
+                while($row = $query->fetch_assoc()){
+                    echo '<article class="chat-message-container --user">
+                                <section class="chat-message">
+                                    '. $row["question"] .'
+                                </section>
+                                <img src="'. $_SESSION["profile"] .'" class="userprofile">
+                            </article>';
+                            echo '<article class="chat-message-container --bot">
+                                <section class="chat-message">
+                                    '. $row["answer"] .'
+                                </section>
+                                <p class="chat-user">'.$botname.'</p>
+                            </article>';
+                }
+            }            
+
+            /* if(isset($_GET["chat"])){
                 if(isset($_SESSION["chats"]["answers"]) && is_array($_SESSION["chats"]["answers"])){
                     foreach($_SESSION["chats"]["answers"] as $question){
                         if($question["chat_id"] == $_GET["chat"]){
@@ -51,7 +74,7 @@
                         
                     }
                 }
-            }
+            } */
         ?>
     </section>
     <footer class="chat-footer">
