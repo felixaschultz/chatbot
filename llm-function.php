@@ -109,16 +109,6 @@
             
             $answers = "I have calulated ". $calculation ." and the anwser is ". $result;
         }
-        /* if(preg_match('/[-+]?\d+(\.\d+)?\s*[\/*+-]\s*[-+]?\d+(\.\d+)?/', str_replace("x", "*", $q), $matches)){
-            print_r($matches);
-            $calculation = $matches[0];
-            eval("\$result = $calculation;");
-            $answers = "I have calulated ". $calculation ." and the anwser is ". $result;
-        } */
-
-        /* if(str_contains(strtolower($q), "")){
-            $answers = "";
-        } */
 
         return $answers;
     }
