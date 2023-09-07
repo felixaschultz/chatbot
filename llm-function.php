@@ -1,19 +1,19 @@
 <?php
-    function llm($q, $id = null){
+    function Llm($q, $id = null){
         include("./general-infos.php");
         include("./black-list.php");
         include("./jokes.php");
         $createdOn = "2023-08-28";
         //function to run an AI to answer some question of users
         $answers = "For that I do not have the answer yet.";
-        $strpattern = '/\b(calculate|calculation)\b/i';
-        $mathpattern = '/\d+\s*[\+\-\*\/]\s*\d+/';
-        $birthdate = new DateTime($createdOn);
+        $strPattern = '/\b(calculate|calculation)\b/i';
+        $mathPattern = '/\d+\s*[\+\-\*\/]\s*\d+/';
+        $birthDate = new DateTime($createdOn);
         // Get the current date
         $currentDate = new DateTime();
 
         // Calculate the difference between the current date and the birthday
-        $age = $birthdate->diff($currentDate)->y;
+        $age = $birthDate->diff($currentDate)->y;
         $createdOn = date("d. m Y", strtotime($createdOn));
         
 
@@ -83,10 +83,10 @@
             }
         } */
 
-        if(preg_match($strpattern, $q)){
+        if(preg_match($strPattern, $q)){
             $pattern = '/(\d+\s*[\+\-\*\/]\s*\d+)/';
             
-            if(preg_match($pattern, $q, $matches) || preg_match($mathpattern, str_replace("x", "*", $q), $matches)){
+            if(preg_match($pattern, $q, $matches) || preg_match($mathPattern, str_replace("x", "*", $q), $matches)){
                 $calculation = $matches[0];
                 eval("\$result = $calculation;");
                 $answers = "I have calulated ". $calculation ." and the anwser is ". $result;
@@ -107,11 +107,9 @@
             }
         }
 
-        if($q){
 
-        }
 
-        if(preg_match_all($mathpattern, $q, $matches)){
+        if(preg_match_all($mathPattern, $q, $matches)){
             foreach($matches[0] as $match){
                 $calculation = $match;
                 eval("\$result = $calculation;");

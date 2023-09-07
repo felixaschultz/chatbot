@@ -6,8 +6,6 @@
     session_start();
 
     $answer = "";
-    $chats = array();
-    $allAnswers = array();
 
     $id = json_decode(file_get_contents("php://input"), true)["id"];
     $question = json_decode(file_get_contents("php://input"), true)["message"];
@@ -57,7 +55,7 @@
             $answer = "GPT-3: I'm sorry, I couldn't generate a response. The monthly quota is reached.";
         }
     }else{
-        $answer = llm($question, $id);
+        $answer = Llm($question, $id);
     }
 
     $chatSQL = "SELECT * FROM chats WHERE chat_id = $id";
