@@ -7,7 +7,7 @@
 
 
         if($num === 0){
-            echo "<h2>Start by asking me any question. I will be trying to answer it as good as possible.</h2>";
+            echo "<h2>Try with telling me your name and see what I answer.</h2>";
         }
 
         while($row = $query->fetch_assoc()){
