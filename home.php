@@ -160,6 +160,7 @@ questionBtn.forEach(btn => {
         </article>
         `;
         messageContainer.scrollTop = messageContainer.scrollHeight;
+        form.reset();
         fetchData(question, id);
 
     })
@@ -187,8 +188,8 @@ form.addEventListener("submit", function(e){
             </article>
             `;
         messageContainer.scrollTop = messageContainer.scrollHeight;
+        form.reset();
         fetchData(question, id);
-        message.value = "";
     }else{
         document.querySelector(".chatbot-container").style.borderColor = "red";
     }
