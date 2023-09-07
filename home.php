@@ -8,18 +8,8 @@
     <section class="lq-group">
         <p>September</p>
         <?php
-            if(isset($_GET["chat"])){
-                $id = $_GET["chat"];
-                $username = $_SESSION["email"];
-                $chatSQL = "SELECT * FROM chats WHERE user = '$username' ORDER BY created_at DESC";
-                $query = mysqli_query($db, $chatSQL);
-
-                while($row = $query->fetch_assoc()){
-                    echo "<a href='?chat=".$row["chat_id"]."' class='lq-question'>".$row["chat_name"]."</a>";
-                }
-            }
+            include("chat/chat.list.php");
         ?>
-        
     </section>
 </aside>
 <main class="chat-container">
@@ -33,55 +23,7 @@
     </header>
     <section class="message-container">
         <?php
-
-            if(isset($_GET["chat"])){
-                $id = $_GET["chat"];
-                $chatSQL = "SELECT * FROM answers WHERE chat_id = $id";
-                $query = mysqli_query($db, $chatSQL);
-                $num = mysqli_num_rows($query);
-
-
-                if($num === 0){
-                    echo "<h2>Start by asking me any question. I will be trying to answer it as good as possible.</h2>";
-                }
-
-                while($row = $query->fetch_assoc()){
-                    echo '<article class="chat-message-container --user">
-                                <section class="chat-message">
-                                    '. $row["question"] .'
-                                </section>
-                                <img src="'. $_SESSION["profile"] .'" class="userprofile">
-                            </article>';
-                            echo '<article class="chat-message-container --bot">
-                                <section class="chat-message">
-                                    '. $row["answer"] .'
-                                </section>
-                                <p class="chat-user">'.$botname.'</p>
-                            </article>';
-                }
-            }
-
-            /* if(isset($_GET["chat"])){
-                if(isset($_SESSION["chats"]["answers"]) && is_array($_SESSION["chats"]["answers"])){
-                    foreach($_SESSION["chats"]["answers"] as $question){
-                        if($question["chat_id"] == $_GET["chat"]){
-                            echo '<article class="chat-message-container --user">
-                                <section class="chat-message">
-                                    '. $question["question"] .'
-                                </section>
-                                <img src="'. $_SESSION["profile"] .'" class="userprofile">
-                            </article>';
-                            echo '<article class="chat-message-container --bot">
-                                <section class="chat-message">
-                                    '. $question["answer"] .'
-                                </section>
-                                <p class="chat-user">'.$botname.' - '. date("d. m Y", $question["timestamp"]) .'</p>
-                            </article>';
-                        }
-                        
-                    }
-                }
-            } */
+            include("chat/chat-overview.php")
         ?>
     </section>
     <footer class="chat-footer">
