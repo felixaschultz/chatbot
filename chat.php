@@ -54,7 +54,7 @@
             if($response_data['error']["type"] == "insufficient_quota"){
                 $error = "";
             }
-            $answer = "GPT-3: I'm sorry, I couldn't generate a response. " . $error;
+            $answer = "GPT-3: I'm sorry, I couldn't generate a response. The monthly quota is reached.";
         }
     }else{
         $answer = llm($question, $id);
