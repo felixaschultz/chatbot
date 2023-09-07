@@ -66,6 +66,12 @@
                 ";
             }
         }
+
+        foreach($blacklistWords as $blackWord){
+            if(str_contains($q, $blackWord)){
+                $answers = "You have entered a word that is on my blacklist!";
+            }
+        }
         
         /* if(str_contains("my name is", $q)){
             if(preg_match('/name is([^(]+)/', $q, $matches)){
@@ -99,6 +105,10 @@
                 
                 $answers = "The square root of $number is: $result";
             }
+        }
+
+        if($q){
+
         }
 
         if(preg_match_all($mathpattern, $q, $matches)){
