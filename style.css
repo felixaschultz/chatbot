@@ -398,6 +398,7 @@ body{
     border: none;
     text-align: center;
     margin-top: .5rem;
+    text-align-last: center;
 }
 /* Loading icon */
 .loading{
