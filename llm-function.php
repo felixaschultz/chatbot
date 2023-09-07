@@ -3,6 +3,7 @@
         include("./general-infos.php");
         include("./black-list.php");
         include("./jokes.php");
+        include("./greetings.php");
         $createdOn = "2023-08-28";
         //function to run an AI to answer some question of users
         $answers = "For that I do not have the answer yet.";
@@ -76,7 +77,7 @@
         if(stristr($q,"my name is") || stristr($q,"call me")){
             if(preg_match('/name is([^(]+)/', $q, $matches) || preg_match('/call me([^(]+)/', $q, $matches)){
                 $username = $matches[1];
-                $answers = "Hello " . $username . "! How can I help you today?";
+                $answers = $greetings[array_rand($greetings, 1)] . " " . $username . "! How can I help you today?";
     
                 $questions = "UPDATE chats SET username = '$username' WHERE chat_id = $id";
                 $answerQuery = mysqli_query($db, $questions);
