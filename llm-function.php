@@ -77,7 +77,7 @@
         if(stristr($q,"my name is") || stristr($q,"call me")){
             if(preg_match('/name is([^(]+)/', $q, $matches) || preg_match('/call me([^(]+)/', $q, $matches)){
                 $username = $matches[1];
-                $answers = $greetings[array_rand($greetings, 1)] . " " . $username . "! How can I help you today?";
+                $answers = $greetings[array_rand($greetings, 1)] . " " . $username . "! " . $nextGreetingsQuestions[array_rand($nextGreetingsQuestions, 1)];
     
                 $questions = "UPDATE chats SET username = '$username' WHERE chat_id = $id";
                 $answerQuery = mysqli_query($db, $questions);
