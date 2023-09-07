@@ -80,7 +80,7 @@
                 $answers = $greetings[array_rand($greetings, 1)] . " " . $username . "! " . $nextGreetingsQuestions[array_rand($nextGreetingsQuestions, 1)];
     
                 $questions = "UPDATE chats SET username = '$username' WHERE chat_id = $id";
-                $answerQuery = mysqli_query($db, $questions);
+                mysqli_query($db, $questions);
             }
         }
 
@@ -110,8 +110,8 @@
 
 
 
-        if(preg_match_all($mathPattern, $q, $matches)){
-            foreach($matches[0] as $match){
+        if(preg_match_all($mathPattern, $q, $mathMatch)){
+            foreach($mathMatch[0] as $match){
                 $calculation = $match;
                 eval("\$result = $calculation;");
             }
