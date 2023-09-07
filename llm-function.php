@@ -73,15 +73,15 @@
             }
         }
         
-        /* if(str_contains("my name is", $q)){
-            if(preg_match('/name is([^(]+)/', $q, $matches)){
-                $username = $matches[0];
-    
+        if(stristr($q,"my name is") || stristr($q,"call me")){
+            if(preg_match('/name is([^(]+)/', $q, $matches) || preg_match('/call me([^(]+)/', $q, $matches)){
+                $username = $matches[1];
                 $answers = "Hello " . $username . "! How can I help you today?";
+    
                 $questions = "UPDATE chats SET username = '$username' WHERE chat_id = $id";
                 $answerQuery = mysqli_query($db, $questions);
             }
-        } */
+        }
 
         if(preg_match($strPattern, $q)){
             $pattern = '/(\d+\s*[\+\-\*\/]\s*\d+)/';

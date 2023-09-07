@@ -37,7 +37,6 @@
 </head>
 <body class="container">
     <?php
-
         if(isset($_SESSION["logged_in"])){
             include("home.php");
         }else{

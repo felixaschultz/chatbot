@@ -357,6 +357,10 @@ body{
     display: grid;
 }
 
+.chat-footer{
+    padding-bottom: 10px;
+}
+
 .suggestions-container{
     /* width: 100%; */
     overflow-x: scroll;
