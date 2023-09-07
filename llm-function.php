@@ -37,7 +37,7 @@
             $answers = "My purpose is to serve you with some basic information. My developer has worked som simply statements in
             for you to test. I will do my best to learn more infos for you.";
         } else if(strtolower($q) == "tell me a joke"){
-            $answers = $jokes[array_rand($jokes)];
+            $answers = $jokes[array_rand($jokes, 1)];
         }
 
         if(preg_match('/convert (\d+) (fahrenheit|celcius|celsius) to (fahrenheit|celcius|celsius)/i', $q, $convert)){
