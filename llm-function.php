@@ -26,8 +26,16 @@
         || str_contains(strtolower($q),"god dag")
         || str_contains(strtolower($q),"hallo")
         || str_contains(strtolower($q),"hello")
+        || str_contains(strtolower($q),"hey")
+        || str_contains(strtolower($q),"greetings")
+        || str_contains(strtolower($q),"good morning")
+        || str_contains(strtolower($q),"good evening")
+        || str_contains(strtolower($q),"good afternoon")
+        || str_contains(strtolower($q),"good day")
+        || str_contains(strtolower($q),"good night")
+        || str_contains(strtolower($q),"good day")
         ){
-            $answers = "Moin";
+            $answers = $greetings[array_rand($greetings, 1)];
         } else if($q == "What is the meaning of life?"){
             $answers = 42;
         } else if($q == "What is your name?" || str_contains(strtolower($q), "your name")){
