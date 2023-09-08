@@ -1,7 +1,7 @@
 <section class="login-screen">
-    <h1>Login to <?php echo $botname; ?></h1>
+    <h1>Login | <?php echo $botname; ?></h1>
     <form id="login-form" method="post" class="login_form">
-        <label for="email">E-Mail</label>
+        <label for="email">Your E-Mail</label>
         <input class="input-field" type="email" name="email" id="email">
         <button class="cta --login" type="submit">Login</button>
     </form>
@@ -28,8 +28,6 @@
     })
 
     function login(token){
-        console.log(token);
-
         fetch("login-client.php", {
             method: "POST",
             body: JSON.stringify({
