@@ -69,7 +69,7 @@
         }
 
         foreach($blacklistWords as $blackWord){
-            if(str_contains($q, $blackWord)){
+            if(str_contains(strtolower($q), $blackWord)){
                 $answers = "You have entered a word that is on my blacklist!";
             }
         }
