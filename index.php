@@ -1,7 +1,7 @@
 <?php
     session_start();
     include("general-infos.php");
-    if(!isset($_GET["chat"])){
+    if(!isset($_GET["chat"]) && isset($_SESSION["logged_in"])){
         header("Location: ?chat=" . rand());
     }
 ?>
