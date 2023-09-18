@@ -35,7 +35,7 @@
         || str_contains(strtolower($q),"good night")
         || str_contains(strtolower($q),"good day")
         ){
-            $answers = $greetings[array_rand($greetings, 1)];
+            $answers = $greetings[array_rand($greetings, 1)] . " ". $nextGreetingsQuestions[array_rand($nextGreetingsQuestions, 1)];
         } else if($q == "What is the meaning of life?"){
             $answers = 42;
         } else if($q == "What is your name?" || str_contains(strtolower($q), "your name")){

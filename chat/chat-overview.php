@@ -9,7 +9,7 @@
 
 
         if($num === 0){
-            echo "<h2>Try with telling me your name and see what I answer.</h2>";
+            echo json_encode("Try with telling me your name and see what I answer.");
         }else{
             $row = $query->fetch_all(MYSQLI_ASSOC);
             echo json_encode($row);

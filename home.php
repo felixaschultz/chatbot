@@ -66,13 +66,26 @@
         </form>
     </footer>
 </main>
-<script>
+<script async>
     fetch("chat/chat-overview.php?chat=<?php echo $_GET["chat"]?>").then((e) => {
-        messageContainer.innerText = "Loading...";
+        messageContainer.innerHTML = `
+            <article class="chat-message-container --bot --loading">
+                <section class="chat-message">
+                    <div class="loading">
+                        <span class="loading-item"></span>
+                        <span class="loading-item"></span>
+                        <span class="loading-item"></span>
+                    </div>
+                </section>
+            </article>
+        `;
         return e.json();
     }).then((d)=> {
         const messageContainer = document.querySelector(".message-container");
-        messageContainer.innerText = "";
+        messageContainer.innerHTML = "";
+        if(d == "Try with telling me your name and see what I answer."){
+            messageContainer.innerHTML = "Try with telling me your name and see what I answer.";
+        }
         d.forEach(message => {
             messageContainer.innerHTML += `
                 <article class="chat-message-container --user">
