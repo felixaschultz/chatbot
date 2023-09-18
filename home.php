@@ -23,7 +23,7 @@
     </header>
     <section class="message-container">
         <?php
-            include("chat/chat-overview.php")
+            /* include("chat/chat-overview.php") */
         ?>
     </section>
     <footer class="chat-footer">
@@ -66,6 +66,27 @@
         </form>
     </footer>
 </main>
+<script>
+    fetch("chat/chat-overview.php?chat=<?php echo $_GET["chat"]?>").then(e=>e.json()).then(d=>{
+        console.log(d);
+        const messageContainer = document.querySelector(".message-container");
+        d.forEach(message => {
+            messageContainer.innerHTML += `
+                <article class="chat-message-container --user">
+                    <section class="chat-message">
+                        ${message.question}
+                    </section>
+                </article>
+                <article class="chat-message-container --bot">
+                    <section class="chat-message">
+                        ${message.answer}
+                    </section>
+                </article>
+            `;
+        })
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+    })
+</script>
 <script async>
 const questionBtn = document.querySelectorAll(".question");
 const messageContainer = document.querySelector(".message-container");

@@ -161,6 +161,7 @@ body{
     background-color: var(--borderColor);
     height: 100vh;
     max-width: 300px;
+    overflow: scroll;
 }
 
 .lq-question{
