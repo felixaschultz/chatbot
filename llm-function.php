@@ -93,7 +93,7 @@
         }
 
         if(preg_match($strPattern, $q)){
-            $pattern = '/(\d+\s*[\+\-\*\/]\s*\d+)/';
+            $pattern = '/([\d+*\/\-]+)/';
             
             if(preg_match($pattern, $q, $matches) || preg_match($mathPattern, str_replace("x", "*", $q), $matches)){
                 $calculation = $matches[0];
