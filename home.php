@@ -22,9 +22,15 @@
         <h2 class="mobile-headline"><?php echo $botname;?></h2>
     </header>
     <section class="message-container">
-        <?php
-            /* include("chat/chat-overview.php") */
-        ?>
+        <article class="chat-message-container --bot --loading">
+            <section class="chat-message">
+                <div class="loading">
+                    <span class="loading-item"></span>
+                    <span class="loading-item"></span>
+                    <span class="loading-item"></span>
+                </div>
+            </section>
+        </article>
     </section>
     <footer class="chat-footer">
         <form method="post" id="chatbot" class="footer-form">
@@ -68,17 +74,6 @@
 </main>
 <script async>
     fetch("chat/chat-overview.php?chat=<?php echo $_GET["chat"]?>").then((e) => {
-        messageContainer.innerHTML = `
-            <article class="chat-message-container --bot --loading">
-                <section class="chat-message">
-                    <div class="loading">
-                        <span class="loading-item"></span>
-                        <span class="loading-item"></span>
-                        <span class="loading-item"></span>
-                    </div>
-                </section>
-            </article>
-        `;
         return e.json();
     }).then((d)=> {
         const messageContainer = document.querySelector(".message-container");
