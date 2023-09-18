@@ -67,9 +67,12 @@
     </footer>
 </main>
 <script>
-    fetch("chat/chat-overview.php?chat=<?php echo $_GET["chat"]?>").then(e=>e.json()).then(d=>{
-        console.log(d);
+    fetch("chat/chat-overview.php?chat=<?php echo $_GET["chat"]?>").then((e) => {
+        messageContainer.innerText = "Loading...";
+        return e.json();
+    }).then((d)=> {
         const messageContainer = document.querySelector(".message-container");
+        messageContainer.innerText = "";
         d.forEach(message => {
             messageContainer.innerHTML += `
                 <article class="chat-message-container --user">
