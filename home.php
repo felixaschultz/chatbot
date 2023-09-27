@@ -142,7 +142,6 @@ questionBtn.forEach(btn => {
         messageContainer.scrollTop = messageContainer.scrollHeight;
         form.reset();
         fetchData(question, id);
-
     })
 })
 
@@ -213,6 +212,16 @@ function fetchData(e, id){
             messageContainer.removeChild(document.querySelector(".--loading"))
             document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight;
         }
+    }).catch((e) => {
+        messageContainer.innerHTML += `
+        <article class="chat-message-container --bot --loading">
+            <section class="chat-message">
+                I´m sorry there was an error. Please try again later, or try with another question.
+                If it still doesn´t work, try reload the page.
+            </section>
+            <p class="chat-user"><?php echo $botname?></p>
+        </article>
+        `;
     })
 }
 
