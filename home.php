@@ -215,4 +215,11 @@ function fetchData(e, id){
         }
     })
 }
+
+chatbotInput.addEventListener("keydown", function(e){
+    if(e === 13){
+        e.preventDefault();
+    }
+})
+
 </script>
